@@ -58,3 +58,24 @@ Spring Boot Backend:
 ```bash
 npm install
 ng serve
+
+---
+
+## 📸 Screenshots
+
+### Login Page
+![Login](screenshots/login.png)
+
+### Admin Dashboard
+![Admin Dashboard](screenshots/admin-dashboard.png)
+
+### Inventory Management
+![Inventory](screenshots/inventory.png)
+
+### Procurement Orders
+![Procurement Orders](screenshots/procurement-orders.png)
+
+### Production Dashboard
+![Production Dashboard](screenshots/production-dashboard.png)
+
+
