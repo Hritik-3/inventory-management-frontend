@@ -60,23 +60,23 @@ npm install
 ng serve
 
 ---
-
 ## 📸 Screenshots
 
 ### Login Page
-![Login](./screenshots/login.png)
+[![Login](./screenshots/login.png)](./screenshots/login.png)
 
 ### Admin Dashboard
-![Admin Dashboard](./screenshots/admin-dashboard.png)
+[![Admin Dashboard](./screenshots/admin-dashboard.png)](./screenshots/admin-dashboard.png)
 
 ### Inventory Management
-![Inventory](./screenshots/inventory.png)
+[![Inventory](./screenshots/inventory.png)](./screenshots/inventory.png)
 
 ### Procurement Orders
-![Procurement Orders](./screenshots/procurement-orders.png)
+[![Procurement Orders](./screenshots/procurement-orders.png)](./screenshots/procurement-orders.png)
 
 ### Production Dashboard
-![Production Dashboard](./screenshots/production-dashboard.png)
+[![Production Dashboard](./screenshots/production-dashboard.png)](./screenshots/production-dashboard.png)
+
 
 
 
