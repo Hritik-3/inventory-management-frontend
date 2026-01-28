@@ -1,0 +1,49 @@
+<div *ngIf="loading" class="loading">Loading...</div>
+
+<div *ngIf="!loading && dashboardData" class="dashboard-container">
+
+  <!-- Stat Cards -->
+  <div class="dashboard-cards">
+    <div class="stat-card total">
+      <span class="material-icons card-icon">inventory_2</span>
+      <h3>Total Products</h3>
+      <span class="card-value">{{ dashboardData.totalProducts }}</span>
+    </div>
+    <div class="stat-card stock">
+      <span class="material-icons card-icon">currency_rupee</span>
+      <h3>Stock Value</h3>
+      <span class="card-value">{{ dashboardData.stockValue | currency:'INR':'symbol':'1.2-2' }}</span>
+    </div>
+    <div class="stat-card low-stock">
+      <span class="material-icons card-icon">error_outline</span>
+      <h3>Low Stock</h3>
+      <span class="card-value">{{ dashboardData.lowStockAlerts }}</span>
+    </div>
+    <div class="stat-card out-stock">
+      <span class="material-icons card-icon">remove_shopping_cart</span>
+      <h3>Out of Stock</h3>
+      <span class="card-value">{{ dashboardData.outOfStock }}</span>
+    </div>
+  </div>
+
+  <!-- Charts Section -->
+  <div class="charts-section">
+    <div class="chart-container">
+      <h3 class="chart-title">Product Distribution</h3>
+      <canvas baseChart
+              [data]="doughnutChartData"
+              [options]="doughnutChartOptions"
+              [type]="'doughnut'">
+      </canvas>
+    </div>
+
+    <!-- <div class="chart-container">
+      <h3 class="chart-title">Stock Levels</h3>
+      <canvas baseChart
+              [data]="barChartData"
+              [options]="barChartOptions"
+              [type]="'bar'">
+      </canvas>
+    </div> -->
+  </div>
+</div>

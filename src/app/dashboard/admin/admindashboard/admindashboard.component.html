@@ -1,0 +1,57 @@
+<div class="dashboard-container" *ngIf="dashboardData">
+
+  <!-- Role Stats Cards -->
+  <div class="stats-grid">
+    <div class="stat-card" *ngFor="let role of dashboardData.roleStats">
+      <h3>{{ role.roleName }}</h3>
+      <p>{{ role.count }}</p>
+    </div>
+  </div>
+
+  <!-- Pie Chart for Role Distribution -->
+  <!-- Pie Chart for Role Distribution -->
+<div class="pie-chart-container">
+  <canvas baseChart
+    [data]="pieChartData"
+    [type]="'pie'"
+    [options]="pieChartOptions">
+  </canvas>
+</div>
+
+
+  <!-- Users Table -->
+  <div class="table-container">
+    <h2>Users</h2>
+
+    <table>
+      <thead>
+        <tr>
+          <th>User ID</th>
+          <th>Name</th>
+          <th>Email</th>
+          <th>Mobile</th>
+          <th>Role</th>
+          <th>Status</th>
+          <th>Last Login</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <tr *ngFor="let u of dashboardData.users">
+          <td>{{ u.userId }}</td>
+          <td>{{ u.fullName }}</td>
+          <td>{{ u.email }}</td>
+          <td>{{ u.mobile }}</td>
+          <td>{{ u.roleName }}</td>
+          <td [ngClass]="{
+            'status-active': u.accountStatus==='ACTIVE',
+            'status-inactive': u.accountStatus==='INACTIVE',
+            'status-locked': u.accountStatus==='LOCKED'
+          }">{{ u.accountStatus }}</td>
+          <td>{{ u.lastLoginAt | date:'short' }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+</div>

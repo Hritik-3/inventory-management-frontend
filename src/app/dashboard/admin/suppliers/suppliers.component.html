@@ -1,0 +1,29 @@
+<div class="container">
+  <h2>Supplier List</h2>
+
+  <table *ngIf="suppliers.length > 0" class="table table-bordered table-striped">
+    <thead>
+      <tr>
+        <th>S.No</th>  <!-- Serial number -->
+        <th>Name</th>
+        <th>Phone</th>
+        <th>Email</th>
+        <th>Contact Person</th>
+        <th>Address</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <tr *ngFor="let supplier of suppliers; let i = index">
+        <td>{{ i + 1 }}</td> <!-- Serial Number -->
+        <td>{{ supplier.suppliersName }}</td>
+        <td>{{ supplier.suppliersPhone }}</td>
+        <td>{{ supplier.suppliersEmail }}</td>
+        <td>{{ supplier.suppliersContactPerson }}</td>
+        <td>{{ supplier.address }}</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <p *ngIf="suppliers.length === 0">No suppliers available.</p>
+</div>

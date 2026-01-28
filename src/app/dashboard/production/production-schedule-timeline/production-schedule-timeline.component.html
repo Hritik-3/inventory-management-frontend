@@ -1,0 +1,41 @@
+<div class="container p-3">
+  <h2>Production Schedule Timeline</h2>
+
+  <!-- ---------------- Units and Lines Status ---------------- -->
+  <div *ngIf="loadingUnits" class="alert alert-info">Loading unit and line statuses...</div>
+  <div *ngIf="unitsStatus.length > 0">
+    <h4>Units & Lines Status</h4>
+    <div *ngFor="let unit of unitsStatus" class="unit-card mb-2">
+      <strong>{{ unit.unitName }}</strong> - Status: {{ unit.status }}
+      <ul>
+        <li *ngFor="let line of unit.lines">
+          {{ line.lineName }} - {{ line.status }}
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  <hr>
+
+  <!-- ---------------- Schedule ID Input & Timeline Button ---------------- -->
+  <div class="mb-3">
+    <label for="scheduleId" class="form-label">Enter Schedule ID:</label>
+    <input type="number" id="scheduleId" class="form-control" [(ngModel)]="scheduleId" placeholder="Schedule ID">
+  </div>
+  <button class="btn btn-primary mb-3" (click)="fetchTimeline()">Show Timeline</button>
+
+  <!-- ---------------- Timeline Display ---------------- -->
+  <div *ngIf="message" class="alert alert-info">{{ message }}</div>
+
+  <div class="timeline-container" *ngIf="timeline.length > 0">
+    <div *ngFor="let item of timeline" class="timeline-item">
+      <div class="timeline-dot"></div>
+      <div class="timeline-content">
+        <!-- Display full timestamp instead of date pipe -->
+        <span class="timeline-date">{{ item.date }}</span>
+        <span class="timeline-status">{{ item.status }}</span>
+        <div *ngIf="item.note" class="timeline-note">{{ item.note }}</div>
+      </div>
+    </div>
+  </div>
+</div>

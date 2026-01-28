@@ -1,0 +1,163 @@
+/* Reset body margins */
+body, html {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+}
+
+/* Main layout: sidebar + main content */
+.admin-layout {
+  display: flex;
+  height: 100vh;
+  font-family: Arial, sans-serif;
+}
+
+/* Sidebar */
+.admin-sidebar {
+  width: 250px;
+  background-color: #0652a3;
+  color: white;
+  padding: 20px 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  height: 100vh;
+  box-sizing: border-box;
+  border-radius: 0; /* remove rounded corners */
+}
+
+/* Sidebar heading */
+.admin-sidebar h3 {
+  margin-bottom: 15px;
+  font-size: 22px;
+  text-align: center;
+  color: #fff;
+}
+
+/* Sidebar buttons */
+.admin-sidebar button {
+  background-color: #0b63ce;
+  border: none;
+  color: white;
+  padding: 12px;
+  text-align: left;
+  border-radius: 0;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+  font-size: 15px;
+  width: 100%;
+}
+
+.admin-sidebar button:hover {
+  background-color: #004d99;
+}
+
+/* Main content wrapper */
+.admin-main {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  height: 100vh;
+}
+
+/* Top header */
+.admin-header {
+  background-color: #0652a3;
+  color: white;
+  padding: 10px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 60px;
+  box-sizing: border-box;
+  border-radius: 0;
+  flex-shrink: 0;
+}
+
+/* Header title */
+.admin-header h1 {
+  margin: 0;
+  font-size: 20px;
+}
+
+
+
+/* Header icons */
+.header-icons {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.icon-link {
+  cursor: pointer;
+}
+
+.icon {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+
+.icon:hover {
+  transform: scale(1.6);
+}
+
+/* For bell */
+.bell{
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+
+.bell:hover {
+  transform: scale(1.3);
+}
+
+
+/* Scrollable content area below top bar */
+.admin-content {
+  flex: 1;
+  padding: 20px;
+  overflow-y: auto;
+  background-color: #f4f4f4;
+  box-sizing: border-box;
+}
+
+/* Tables */
+table {
+  width: 100%;
+  margin-top: 20px;
+  background-color: white;
+  border-collapse: collapse;
+}
+
+table th, table td {
+  padding: 10px;
+  text-align: left;
+  border: 1px solid #ccc;
+}
+
+table th {
+  background-color: #e0e0e0;
+  cursor: pointer;
+}
+
+table tr:hover {
+  background-color: #f1f1f1;
+}
+
+.btn-sm {
+  padding: 5px 10px;
+  font-size: 12px;
+}
+
+/* Pagination and other buttons */
+button {
+  border-radius: 0 !important;
+}

@@ -1,0 +1,74 @@
+<div class="container mt-4">
+  <h2 class="mb-4 text-center fw-bold">📅 Production Schedules</h2>
+
+  <!-- Category Filter -->
+  <div class="row mb-3">
+    <div class="col-md-4 offset-md-4">
+      <label for="categoryFilter" class="form-label fw-semibold">Filter by Category</label>
+      <select id="categoryFilter" class="form-select"
+              [(ngModel)]="selectedCategory"
+              (change)="filterByCategory()">
+        <option value="all">All Categories</option>
+        <option *ngFor="let c of categories" [value]="c">{{ c }}</option>
+      </select>
+    </div>
+  </div>
+
+  <!-- Loading Spinner -->
+  <div *ngIf="loading" class="text-center">
+    <div class="spinner-border text-primary" role="status">
+      <span class="visually-hidden">Loading...</span>
+    </div>
+    <p>Loading schedules...</p>
+  </div>
+
+  <!-- Table -->
+  <div *ngIf="!loading && filteredSchedules.length > 0" class="table-responsive shadow-lg rounded">
+    <table class="table table-hover align-middle text-center">
+      <thead class="table-dark">
+        <tr>
+          <th>Schedule ID</th>
+          <th>Product</th>
+          <th>Category</th>
+          <!-- <th>Supplier</th> -->
+          <th>Start Date</th>
+          <th>End Date</th>
+          <th>Quantity</th>
+          <th>Status</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let s of filteredSchedules">
+          <td>{{ s.psId }}</td>
+          <td class="text-start">
+            <div>
+              <div class="fw-bold">{{ s.product?.productsName }}</div>
+              <small class="text-muted">{{ s.product?.productsDescription }}</small>
+            </div>
+          </td>
+          <td>{{ s.product?.category?.categoryName }}</td>
+          <!-- <td>{{ s.product?.supplier?.suppliersName }}</td> -->
+          <td>{{ s.psStartDate }}</td>
+          <td>{{ s.psEndDate }}</td>
+          <td class="fw-bold">{{ s.psQuantity }}</td>
+          <td>
+            <span 
+              class="badge px-3 py-2"
+              [ngClass]="{
+                'bg-success': s.psStatus === 'COMPLETED',
+                'bg-warning text-dark': s.psStatus === 'PLANNED',
+                'bg-danger': s.psStatus === 'CANCELLED'
+              }">
+              {{ s.psStatus }}
+            </span>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- No Data -->
+  <div *ngIf="!loading && filteredSchedules.length === 0" class="alert alert-warning text-center mt-4">
+    ⚠️ No schedules found
+  </div>
+</div>

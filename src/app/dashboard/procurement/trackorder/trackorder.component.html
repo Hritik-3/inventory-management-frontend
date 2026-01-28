@@ -1,0 +1,42 @@
+<div class="container">
+ 
+ 
+  <form [formGroup]="form" (ngSubmit)="onSubmit()" class="track-form">
+    <label for="poId" class="po-label">Enter Purchase Order ID:</label>
+    <input
+      id="poId"
+      type="number"
+      formControlName="poId"
+      placeholder="e.g. 123"
+      min="1"
+      (keydown)="preventNegativeInput($event)"
+      required
+    />
+    <button type="submit" [disabled]="form.invalid">Track</button>
+  </form>
+ 
+  <div *ngIf="order" class="order-details">
+    <h3 class="heading">Order Details</h3>
+ 
+    <div class="detail"><strong>Order ID:</strong> {{ order.poId }}</div>
+    <div class="detail"><strong>Order Date:</strong> {{ order.poOrderDate | date:'mediumDate' }}</div>
+    <div class="detail"><strong>Expected Delivery Date:</strong> {{ order.poExpectedDeliveryDate | date:'mediumDate' }}</div>
+    <div class="detail"><strong>Delivery Status:</strong></div>
+ 
+    <div class="status-tracker">
+      <div
+        *ngFor="let status of statusSteps; let i = index"
+        [ngClass]="{'active': i === currentStatusIndex, 'completed': i < currentStatusIndex}">
+       
+        <span class="icon">{{ getIcon(status) }}</span>
+        <span class="status-label">{{ status }}</span>
+       
+        <span *ngIf="i < statusSteps.length - 1" class="arrow">→</span>
+      </div>
+    </div>
+  </div>
+ 
+  <p *ngIf="error" class="error">{{ error }}</p>
+</div>
+ 
+ 

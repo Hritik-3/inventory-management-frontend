@@ -1,0 +1,33 @@
+<div class="container p-3">
+  <h2>Production Schedule Tracking</h2>
+
+  <!-- Message -->
+  <div *ngIf="message" class="alert alert-info mt-2">{{ message }}</div>
+
+  <!-- Input for schedule ID -->
+  <div class="mb-3 mt-3">
+    <label for="scheduleId">Enter Schedule ID:</label>
+    <input
+      type="number"
+      id="scheduleId"
+      [(ngModel)]="scheduleId"
+      class="form-control"
+      placeholder="Schedule ID"
+    >
+  </div>
+
+  <button class="btn btn-primary mb-3" (click)="trackSchedule()">Track Schedule</button>
+
+  <!-- Tracking Info -->
+  <div *ngIf="trackingInfo" class="card mt-3">
+    <div class="card-body">
+      <h5 class="card-title">Schedule Status</h5>
+      <p><strong>Status:</strong> {{ trackingInfo.psStatus }}</p>
+      <p><strong>Start Date:</strong> {{ trackingInfo.psStartDate | date:'shortDate' }}</p>
+      <p><strong>End Date:</strong> {{ trackingInfo.psEndDate | date:'shortDate' }}</p>
+      <p *ngIf="trackingInfo.psQuantity"><strong>Quantity:</strong> {{ trackingInfo.psQuantity }}</p>
+      <p *ngIf="trackingInfo.productName"><strong>Product:</strong> {{ trackingInfo.productName }}</p>
+      <p *ngIf="trackingInfo.productionLineName"><strong>Production Line:</strong> {{ trackingInfo.productionLineName }}</p>
+    </div>
+  </div>
+</div>

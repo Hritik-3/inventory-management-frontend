@@ -1,0 +1,138 @@
+/* Container Styling */
+.container {
+  max-width: 1200px;
+  margin: auto;
+  padding: 1rem;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* Heading */
+h2 {
+  font-size: 1.8rem;
+  letter-spacing: 0.5px;
+}
+
+/* Spinner */
+.spinner-border {
+  width: 3rem;
+  height: 3rem;
+}
+
+/* Orders Table */
+.table {
+  border-radius: 0.5rem;
+  overflow: hidden;
+  background-color: #fff;
+}
+
+.table-hover tbody tr:hover {
+  background-color: #f1f7ff;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.table th, .table td {
+  vertical-align: middle;
+}
+
+.table-primary {
+  background-color: #cfe2ff !important;
+  color: #084298;
+}
+
+/* Badges */
+.badge {
+  font-size: 0.85rem;
+  padding: 0.45rem 0.75rem;
+  border-radius: 0.5rem;
+}
+
+/* Status Badge Colors */
+.bg-warning.text-dark {
+  background-color: #ffc107 !important;
+  color: #212529 !important;
+}
+
+.bg-primary {
+  background-color: #0d6efd !important;
+  color: #fff !important;
+}
+
+.bg-info.text-dark {
+  background-color: #0dcaf0 !important;
+  color: #212529 !important;
+}
+
+.bg-success {
+  background-color: #198754 !important;
+  color: #fff !important;
+}
+
+.bg-secondary {
+  background-color: #6c757d !important;
+  color: #fff !important;
+}
+
+/* Buttons */
+.btn-outline-success, .btn-outline-warning, .btn-outline-primary, .btn-outline-secondary {
+  font-size: 0.85rem;
+  border-radius: 0.5rem;
+  padding: 0.35rem 0.6rem;
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.btn-outline-success:hover {
+  background-color: #198754;
+  color: #fff;
+  transform: translateY(-2px);
+  box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+}
+
+.btn-outline-warning:hover {
+  background-color: #ffc107;
+  color: #212529;
+  transform: translateY(-2px);
+  box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+}
+
+.btn-outline-primary:hover {
+  background-color: #0d6efd;
+  color: #fff;
+  transform: translateY(-2px);
+  box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+}
+
+.btn-outline-secondary:hover {
+  background-color: #6c757d;
+  color: #fff;
+}
+
+/* Error Message */
+.alert-danger {
+  font-weight: 500;
+  font-size: 0.95rem;
+}
+
+/* No Data Found */
+.text-muted i {
+  color: #6c757d;
+}
+
+/* Responsive Table */
+@media (max-width: 768px) {
+  .table-responsive {
+    overflow-x: auto;
+  }
+
+  .btn-outline-success, .btn-outline-warning, .btn-outline-primary, .btn-outline-secondary {
+    font-size: 0.75rem;
+    padding: 0.3rem 0.5rem;
+  }
+
+  h2 {
+    font-size: 1.5rem;
+  }
+}

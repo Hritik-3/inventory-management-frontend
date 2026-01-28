@@ -1,0 +1,76 @@
+<div class="page-card">
+  <h2>Production Orders Tracking</h2>
+ 
+  <!-- Search bar -->
+  <div class="search-bar">
+    <input
+      type="number"
+      [(ngModel)]="searchId"
+      placeholder="Enter Schedule ID"
+    />
+    <button (click)="searchOrder()" class="bg-blue-600">Search</button>
+    <button (click)="resetSearch()" class="bg-gray-500">Reset</button>
+  </div>
+ 
+  <!-- Error message -->
+  <div *ngIf="errorMessage" class="text-red-600 mb-4 font-medium">
+    {{ errorMessage }}
+  </div>
+ 
+  <!-- Orders table -->
+  <div class="table-scroll-container">
+    <table>
+      <thead>
+        <tr>
+          <th>Schedule ID</th>
+          <th>Product ID</th>
+          <th>Product Name</th>
+          <th>Quantity</th>
+          <th>Start Date</th>
+          <th>End Date</th>
+          <th>Status</th>
+          <th class="text-center">Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let order of filteredOrders">
+          <td>{{ order.scheduleId }}</td>
+          <td>{{ order.productId }}</td>
+          <td>{{ order.productName }}</td>
+          <td>{{ order.quantity }}</td>
+          <td>{{ order.startDate | date: 'mediumDate' }}</td>
+          <td>{{ order.endDate | date: 'mediumDate' }}</td>
+          <td class="font-semibold">{{ order.status }}</td>
+          <td class="text-center">
+            <ng-container *ngIf="order.status === 'COMPLETED'">
+              <div class="flex justify-center gap-3">
+                <button
+                  class="bg-green-500"
+                  [disabled]="order.actionTaken"
+                  (click)="handleAction(order, 'received')">
+                  ✔ Received
+                </button>
+                <button
+                  class="bg-red-500"
+                  [disabled]="order.actionTaken"
+                  (click)="handleAction(order, 'not_received')">
+                  ✖ Not Received
+                </button>
+              </div>
+            </ng-container>
+            <ng-container *ngIf="order.status !== 'COMPLETED'">
+              <span class="text-gray-400 italic">No actions available</span>
+            </ng-container>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+ 
+  <!-- No data message -->
+  <div *ngIf="filteredOrders.length === 0 && !errorMessage" class="no-data">
+    No production orders found.
+  </div>
+</div>
+ 
+ 

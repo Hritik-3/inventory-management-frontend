@@ -1,0 +1,88 @@
+.fetch-container {
+  padding: 20px;
+  font-family: 'Segoe UI', Arial, sans-serif;
+  min-height: 100vh;
+  color: #333;
+  background: #f5f7fa;
+}
+
+.fetch-container h2 {
+  font-size: 28px;
+  margin-bottom: 20px;
+  color: #1a1a1a;
+  text-shadow: 0 1px 2px rgba(0,0,0,0.1);
+}
+
+/* Table Wrapper */
+.orders-table-wrapper {
+  overflow-x: auto;
+}
+
+/* Main Orders Table */
+.orders-table {
+  width: 100%;
+  border-collapse: collapse;
+  background: #ffffff;
+  color: #333;
+  border-radius: 8px;
+  box-shadow: 0px 3px 8px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+}
+
+.orders-table th, .orders-table td {
+  padding: 12px 10px;
+  text-align: left;
+  border-bottom: 1px solid #e0e0e0;
+}
+
+.orders-table th {
+  background:rgb(44, 137, 204);
+  color: #fff;
+  font-weight: 600;
+}
+
+.orders-table tr:hover {
+  background: #e8f0ff;
+  color: #000;
+  transform: none;
+}
+
+/* Items Table */
+.items-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 5px;
+  border-radius: 6px;
+  overflow: hidden;
+  background: #f9f9f9;
+}
+
+.items-table th, .items-table td {
+  padding: 8px 6px;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+}
+
+.items-table th {
+  background: rgb(44, 137, 204);
+  color: #ffffff;
+  font-weight: 500;
+}
+
+.items-table tr:hover {
+  background: #dce6f1;
+  color: #000;
+}
+
+/* Error & Loading */
+.error {
+  color: #d9534f;
+  font-weight: bold;
+  margin: 10px 0;
+}
+
+.loading {
+  color: #f0ad4e;
+  font-size: 16px;
+  font-style: italic;
+}

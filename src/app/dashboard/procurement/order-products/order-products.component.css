@@ -1,0 +1,135 @@
+/* Global reset & font */
+body, html {
+  margin: 0;
+  padding: 0;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #f4f6f8;
+}
+
+/* Card styling */
+.card {
+  border-radius: 12px;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
+  background-color: #fff;
+  padding: 20px;
+  margin-bottom: 20px;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 25px rgba(0,0,0,0.12);
+}
+
+/* Card titles */
+.card h5 {
+  font-weight: 600;
+  font-size: 18px;
+  margin-bottom: 15px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.card h5 i {
+  font-size: 20px;
+  color: #0652a3;
+}
+
+/* Form elements */
+label.form-label {
+  font-weight: 500;
+}
+
+select.form-select,
+input.form-control,
+textarea.form-control {
+  border-radius: 8px;
+  border: 1px solid #ced4da;
+  font-size: 0.95rem;
+  padding: 8px 12px;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+select.form-select:focus,
+input.form-control:focus,
+textarea.form-control:focus {
+  border-color: #0652a3;
+  box-shadow: 0 0 4px rgba(6, 82, 163, 0.3);
+  outline: none;
+}
+
+/* Buttons */
+button.btn {
+  border-radius: 8px;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+button.btn-dark:hover,
+button.btn-secondary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+}
+
+/* Alert for added items */
+.alert {
+  border-radius: 10px;
+  padding: 10px 15px;
+  font-size: 0.95rem;
+}
+
+/* Table styling */
+.table {
+  margin-top: 10px;
+}
+
+.table th, .table td {
+  vertical-align: middle;
+  font-size: 0.95rem;
+}
+
+.table th {
+  background-color: #0652a3;
+  /* border-radius: 8px; */
+  color: white;
+}
+
+.table tbody tr:hover {
+  background-color: #f1f5f9;
+}
+
+.table .btn-link.text-danger:hover {
+  text-decoration: none;
+}
+
+/* Badges */
+.badge {
+  font-size: 0.85rem;
+  font-weight: 500;
+}
+
+/* Container spacing */
+.container {
+  max-width: 1200px;
+  margin: auto;
+  padding: 30px 20px;
+}
+
+/* Headings & text */
+h2 {
+  font-weight: 600;
+  margin-bottom: 5px;
+  color: #0652a3;
+}
+
+p.text-muted {
+  font-size: 0.95rem;
+}
+
+/* Responsive adjustments */
+@media (max-width: 992px) {
+  .col-md-8, .col-md-4 {
+    flex: 0 0 100%;
+    max-width: 100%;
+  }
+}

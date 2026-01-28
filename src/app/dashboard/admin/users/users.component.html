@@ -1,0 +1,73 @@
+
+      <!-- Users Table -->
+        <div class="mb-3">
+          <input
+            type="text"
+            class="form-control"
+            placeholder="Search by username or email"
+            [(ngModel)]="searchQuery"
+            (input)="filterUsers()"
+          />
+        </div>
+
+        <table class="table table-bordered table-striped">
+          <thead>
+            <tr>
+              <th (click)="sortUsers('userId')">ID</th>
+              <th (click)="sortUsers('userName')">Username</th>
+              <th (click)="sortUsers('userEmail')">Email</th>
+              <th (click)="sortUsers('role.roleName')">Role</th>
+              <th (click)="sortUsers('accountStatus')">Account Status</th>
+              <th>Action</th>
+              <th>Delete</th>
+            </tr>
+          </thead>
+          <tbody>
+  <ng-container *ngFor="let user of pagedUsers">
+    <tr *ngIf="user.userName.toLowerCase() !== 'admin'">
+      <td>{{ user.userId }}</td>
+      <td>{{ user.userName }}</td>
+      <td>{{ user.userEmail }}</td>
+      <td>{{ user.role.roleName }}</td>
+      <td>
+        <span
+          [ngClass]="{
+            'text-success': user.accountstatus === 'ACTIVE',
+            'text-danger': user.accountstatus === 'LOCKED',
+            'text-secondary': user.accountstatus === 'INACTIVE'
+          }"
+        >
+          {{ user.accountstatus }}
+        </span>
+      </td>
+      <td>
+        <button *ngIf="user.accountstatus === 'LOCKED'" class="btn btn-sm btn-success" (click)="unlock(user.userEmail)">
+          Unlock
+        </button>
+        <button *ngIf="user.accountstatus === 'ACTIVE'" class="btn btn-sm btn-warning" (click)="lockuser(user.userEmail)">
+          Lock
+        </button>
+        <button *ngIf="user.accountstatus === 'ADMIN_LOCKED'" class="btn btn-sm btn-success" (click)="unlock(user.userEmail)">
+          Unlock
+        </button>
+      </td>
+      <td>
+        <button (click)="deactivateUser(user.userEmail)" class="btn btn-warning btn-sm">Delete</button>
+      </td>
+    </tr>
+  </ng-container>
+</tbody>
+
+        </table>
+
+        <p *ngIf="!loading && users.length === 0 && !error">No users found.</p>
+        <p *ngIf="loading">Loading users...</p>
+        <p *ngIf="error" class="text-danger">{{ error }}</p>
+
+        <div class="d-flex justify-content-between align-items-center">
+          <button class="btn btn-outline-primary" (click)="prevPage()" [disabled]="currentPage === 1">Previous</button>
+          <span>Page {{ currentPage }} of {{ getTotalPages() }}</span>
+          <button class="btn btn-outline-primary" (click)="nextPage()" [disabled]="(currentPage * itemsPerPage) >= filteredUsers.length">
+            Next
+          </button>
+      </div>

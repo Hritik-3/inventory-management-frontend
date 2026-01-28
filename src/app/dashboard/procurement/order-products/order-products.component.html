@@ -1,0 +1,140 @@
+<div class="container my-1">
+  <h2 class="mb-3">Create New Order For Products</h2>
+  <p class="text-muted mb-4">Create orders for customers or dealers from inventory</p>
+
+  <div class="row">
+    <!-- Order Form -->
+    <div class="col-md-8">
+      <div class="card p-4 mb-4">
+        <h5><i class="bi bi-cart"></i> Order Details</h5>
+
+        <div class="row mb-3">
+          <div class="col-md-6">
+            <label class="form-label">
+              Select Customer/Dealer <span class="text-danger">*</span>
+            </label>
+
+            <select class="form-select mb-3" [(ngModel)]="selectedCustomer">
+              <option disabled selected>Choose Customer</option>
+              <option *ngFor="let customer of customers" [ngValue]="customer">
+                <!-- {{ customer.id }} -->
+                {{ customer.name }} 
+              </option>
+            </select>
+          </div>
+          <div class="col-md-6">
+            <label class="form-label">Priority</label>
+            <select class="form-select" [(ngModel)]="priority">
+              <option>High Priority</option>
+              <option>Medium Priority</option>
+              <option>Low Priority</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label">Expected Delivery Date</label>
+          <input type="date" class="form-control" [(ngModel)]="expectedDate" />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label">Order Notes</label>
+          <textarea class="form-control" rows="2" [(ngModel)]="notes" placeholder="Add any special instructions or notes..."></textarea>
+        </div>
+      </div>
+
+      <!-- Add Items Section -->
+      <div class="card p-4 mb-4">
+        <h5><i class="bi bi-box"></i> Add Items</h5>
+
+        <!-- Search Field -->
+        <input
+          type="text"
+          [(ngModel)]="productSearchTerm"
+          (ngModelChange)="onProductSearchChange()"
+          class="form-control"
+          placeholder="Search product by name, SKU or ID"
+        />
+
+        <div class="row mb-3 mt-3">
+          <div class="col-md-8">
+            <select class="form-select" [(ngModel)]="selectedProduct">
+              <option disabled selected>Select Product</option>
+              <option *ngFor="let item of filteredProducts" [ngValue]="item">
+                {{ item.productsName }} ₹{{ item.productsUnitPrice }} - Stock: {{ item.productsQuantity }}
+              </option>
+            </select>
+          </div>
+          <div class="col-md-2">
+            <input type="number" class="form-control" [(ngModel)]="quantity" min="1" />
+          </div>
+          <div class="col-md-2">
+            <button *ngIf="!editingItem" class="btn btn-dark w-100" (click)="addItem()">+ Add</button>
+            <button *ngIf="editingItem" class="btn btn-success w-100" (click)="saveEditedItem()">💾 Save</button>
+          </div>
+        </div>
+
+        <div *ngIf="addedItems.length">
+          <div class="alert alert-light mb-3" *ngFor="let item of addedItems">
+            <strong>{{ item.productsName }}</strong> - ₹{{ item.productsUnitPrice }} each <br />
+            <small class="text-muted">Total: ₹{{ item.total.toFixed(2) }}</small>
+          </div>
+        </div>
+      </div>
+
+      <!-- Order Items Table -->
+      <div class="card p-4">
+        <h5>Order Items ({{ addedItems.length }})</h5>
+        <table class="table table-sm">
+          <thead>
+            <tr>
+              <th>Product</th>
+              <th>Qty</th>
+              <th>Unit Price</th>
+              <th>Total</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let item of addedItems">
+              <td>{{ item.productsName }}</td>
+              <td>{{ item.quantity }}</td>
+              <td>₹{{ item.productsUnitPrice }}</td>
+              <td>₹{{ item.total.toFixed(2) }}</td>
+              <td>
+                <button class="btn btn-link text-primary btn-sm" (click)="editItem(item)">
+                  <i class="bi bi-pencil"></i>
+                </button>
+                <button class="btn btn-link text-danger btn-sm" (click)="removeItem(item)">
+                  <i class="bi bi-trash"></i>
+                </button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- Order Summary -->
+    <div class="col-md-4">
+      <div class="card p-4">
+        <h5><i class="bi bi-calculator"></i> Order Summary</h5>
+
+        <div *ngIf="selectedCustomer" class="mb-3">
+          <p><strong>Customer:</strong></p>
+          <p>ID: {{ selectedCustomer.id }}</p>
+          <p>Name: {{ selectedCustomer.name }}</p>
+          <p>Email: {{ selectedCustomer.email }}</p>
+          <p>Address: {{ selectedCustomer.address }}</p>
+        </div>
+
+        <p>Items: {{ addedItems.length }}</p>
+        <p>Total Quantity: {{ totalQuantity }}</p>
+        <h5>Total Value: <strong>₹{{ totalValue.toFixed(2) }}</strong></h5>
+        <span class="badge text-bg-warning mb-3">{{ priority }}</span>
+
+        <button class="btn btn-secondary w-100" (click)="submitOrder()">📝 Create Order</button>
+      </div>
+    </div>
+  </div>
+</div>

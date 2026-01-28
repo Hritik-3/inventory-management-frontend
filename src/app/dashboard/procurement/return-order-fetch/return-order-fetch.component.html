@@ -1,0 +1,54 @@
+<div class="fetch-container">
+  <h2>📦 Return Orders</h2>
+
+  <div *ngIf="loading" class="loading">⏳ Loading return orders...</div>
+  <div *ngIf="error" class="error">{{ error }}</div>
+
+  <div *ngIf="!loading && !error" class="orders-table-wrapper">
+    <table class="orders-table">
+      <thead>
+        <tr>
+          <th>Return ID</th>
+          <th>Date</th>
+          <th>Reason</th>
+          <th>Status</th>
+          <th>PO ID</th>
+          <th>Returned By</th>
+          <th>Items</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let order of returnOrders">
+          <td>{{ order.roId }}</td>
+          <td>{{ order.roReturnDate | date:'short' }}</td>
+          <td>{{ order.roReturnReason }}</td>
+          <td>{{ order.roStatus }}</td>
+          <td>{{ order.purchaseOrderId }}</td>
+          <td>{{ order.returnedByUserId }}</td>
+          <td>
+            <table class="items-table">
+              <thead>
+                <tr>
+                  <th>ROI ID</th>
+                  <th>Product</th>
+                  <th>Quantity</th>
+                  <th>Condition</th>
+                  <th>PO Item ID</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let item of order.items">
+                  <td>{{ item.roiId }}</td>
+                  <td>{{ item.productName }} ({{ item.productId }})</td>
+                  <td>{{ item.returnQuantity }}</td>
+                  <td>{{ item.conditionNote }}</td>
+                  <td>{{ item.purchaseOrderItemId }}</td>
+                </tr>
+              </tbody>
+            </table>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

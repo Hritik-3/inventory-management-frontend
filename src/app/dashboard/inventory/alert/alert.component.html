@@ -1,0 +1,96 @@
+<div class="alert-container">
+  <!-- 🔹 Filter dropdown -->
+  <div class="filter-bar">
+    <label for="stockFilter">Filter:</label>
+    <select id="stockFilter" [(ngModel)]="stockFilter">
+      <option value="all">All Products</option>
+      <option value="low">Low Stock</option>
+      <option value="within">Within Stock</option>
+      <option value="high">Full</option>
+      <option value="above">OverStock</option>
+    </select>
+
+    <!-- 🔹 Bulk actions -->
+    <div class="bulk-actions">
+      <!-- Schedule All only for Low Stock -->
+      <button *ngIf="stockFilter === 'low'" class="schedule-all-btn" (click)="scheduleAllEligibleProducts()">
+        📌 Schedule All
+      </button>
+
+      <!-- Complete All always visible -->
+      <button class="complete-all-btn" (click)="completeAllProduction()">✅ Complete All</button>
+    </div>
+  </div>
+
+  <!-- 🔹 Product Table -->
+  <table>
+    <thead>
+      <tr>
+        <th>Product ID</th>
+        <th>Product Name</th>
+        <th>Quantity</th>
+        <th>Alert</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let product of filteredProducts">
+        <td>{{ product.productsId }}</td>
+        <td>{{ product.productsName }}</td>
+        <td>{{ product.productsQuantity }}</td>
+        <td>
+          <span [ngClass]="getAlertClass(product)">
+            {{ getAlertStatus(product) }}
+          </span>
+        </td>
+        <td>
+          <button 
+            (click)="openScheduleModal(product)" 
+            class="schedule-btn active"
+            [disabled]="product.scheduled">
+            {{ product.scheduled ? 'Already Planned' : 'Schedule' }}
+          </button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- 🔹 Schedule Modal -->
+<div *ngIf="showScheduleModal" class="modal fade show d-block" tabindex="-1" style="background-color: rgba(0,0,0,0.5);">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content shadow-lg">
+      <div class="modal-header bg-primary text-white">
+        <h5 class="modal-title">Schedule Production</h5>
+        <button type="button" class="btn-close btn-close-white" (click)="closeScheduleModal()"></button>
+      </div>
+
+      <div class="modal-body">
+        <p class="mb-3">
+          <strong>Product:</strong> {{ selectedProduct?.productsName }}
+        </p>
+
+        <div class="mb-3">
+          <label for="qty" class="form-label">Enter Quantity</label>
+          <input
+            type="number"
+            id="qty"
+            class="form-control"
+            [(ngModel)]="manualQty"
+            min="1"
+            placeholder="Enter qty"
+          />
+        </div>
+      </div>
+
+      <div class="modal-footer">
+        <button class="btn btn-success" (click)="confirmSchedule()">
+          <i class="bi bi-check-circle me-1"></i> Confirm
+        </button>
+        <button class="btn btn-secondary" (click)="closeScheduleModal()">
+          <i class="bi bi-x-circle me-1"></i> Cancel
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

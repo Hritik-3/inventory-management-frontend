@@ -1,0 +1,70 @@
+<div class="admin-layout">
+  <!-- Sidebar -->
+  <aside class="admin-sidebar">
+  <h3>Admin <br> Dashboard</h3>
+
+  <button (click)="users()">
+    <i class="bi bi-people-fill sidebar-icon"></i>
+    All Users
+  </button>
+
+  <button (click)="register()">
+    <i class="bi bi-person-plus-fill sidebar-icon"></i>
+    Register User
+  </button>
+
+  <button (click)="unlockuser()">
+    <i class="bi bi-unlock-fill sidebar-icon"></i>
+    Unlock Account
+  </button>
+
+  <button (click)="fetchSuppliers()">
+    <i class="bi bi-building sidebar-icon"></i>
+    View Suppliers
+  </button>
+
+  <button (click)="updatepassword()">
+    <i class="bi bi-key-fill sidebar-icon"></i>
+    Update Password
+  </button>
+
+  <button (click)="logout()">
+    <i class="bi bi-box-arrow-right sidebar-icon"></i>
+    Logout
+  </button>
+</aside>
+
+
+  <!-- Main Content Area -->
+  <div class="admin-main">
+    <!-- Top Bar -->
+    <header class="admin-header">
+      <h1>Welcome, {{ username }}!</h1>
+     <div class="header-icons">
+        <!-- Home Icon -->
+        <a (click)="onHomeClick()" class="icon-link" title="Home Page">
+          <img src="assets/home.png" alt="Home" class="icon" />
+        </a>
+ 
+        <!-- Notification Icon -->
+        <a (click)="onNotificationClick()" class="icon-link" title="Notifications">
+          <img src="assets/bell.png" alt="Notifications" class="icon" />
+        </a>
+ 
+        <!-- Profile Icon with Dropdown -->
+        <div class="profile-container" (click)="toggleProfileMenu()">
+          <img src="assets/profile.png" alt="Profile" class="icon" />
+          <div class="profile-dropdown" *ngIf="profileMenuOpen">
+            <button (click)="updateProfile($event)">Update Profile</button>
+            <button (click)="logoutFromMenu($event)">Logout</button>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- Scrollable Main Content -->
+    <div class="admin-content">
+      <router-outlet></router-outlet>
+    </div>
+  </div>
+</div>

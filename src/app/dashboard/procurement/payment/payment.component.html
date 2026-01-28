@@ -1,0 +1,171 @@
+<!--
+<div class="payment-card">
+  <div class="payment-header">
+    💳 Secure Payment Portal
+  </div>
+ 
+  <div class="payment-body">
+    <div class="payment-form">
+      <label for="orderId">Order ID</label>
+      <input
+        id="orderId"
+        type="number"
+        [(ngModel)]="orderId"
+        (keypress)="allowOnlyPositive($event)"
+        placeholder="Enter Order ID"
+        min="1"
+      />
+ 
+      <div class="button-group">
+        <button (click)="validateOrderId()" [disabled]="!orderId">
+          🔍 Check Order ID
+        </button>
+      </div>
+    </div>
+ 
+    <p class="message" [class.error]="error" [class.success]="success">{{ message }}</p>
+ 
+    <div *ngIf="orderValid">
+      <div class="payment-form">
+        <label for="paymentMethod">Payment Method</label>
+        <select id="paymentMethod" [(ngModel)]="paymentMethod">
+          <option value="" disabled selected>Select Payment Method</option>
+          <option value="UPI">UPI</option>
+          <option value="CreditCard">Credit Card</option>
+          <option value="NetBanking">Net Banking</option>
+        </select>
+ 
+        <div class="button-group">
+          <button (click)="makePayment()" [disabled]="!paymentMethod || loading">
+            <span *ngIf="!loading">💰 Make Payment</span>
+            <span *ngIf="loading" class="spinner"></span>
+          </button>
+        </div>
+      </div>
+ 
+      <div *ngIf="invoiceData" class="invoice-container">
+        <h3>🧾 Invoice for Order #{{ invoiceData.orderId }}</h3>
+        <p><strong>Billing Address:</strong> {{ invoiceData.billingAddress }}</p>
+        <p><strong>Phone:</strong> {{ invoiceData.phoneNumber }}</p>
+ 
+        <table class="invoice-table">
+          <thead>
+            <tr>
+              <th>Product Name</th>
+              <th>Category</th>
+              <th>Qty</th>
+              <th>Unit Price</th>
+              <th>Total</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let item of invoiceData.items">
+              <td>{{ item.productName }}</td>
+              <td>{{ item.category }}</td>
+              <td>{{ item.quantity }}</td>
+              <td>₹{{ item.unitPrice }}</td>
+              <td>₹{{ item.unitPrice * item.quantity }}</td>
+            </tr>
+          </tbody>
+        </table>
+ 
+        <div class="invoice-summary">
+          <p><strong>Subtotal:</strong> ₹{{ invoiceData.subtotal }}</p>
+          <p><strong>Tax (18%):</strong> ₹{{ invoiceData.tax }}</p>
+          <p><strong>Total:</strong> ₹{{ invoiceData.totalPrice }}</p>
+        </div>
+ 
+        <button class="download-btn" (click)="downloadInvoicePdf()">⬇️ Download PDF</button>
+      </div>
+    </div>
+  </div>
+</div> -->
+ 
+ 
+<div class="payment-card">
+  <div class="payment-header">
+    💳 Secure Payment Portal
+  </div>
+ 
+  <div class="payment-body">
+    <div class="payment-form">
+      <label for="orderId">Order ID</label>
+      <input
+        id="orderId"
+        type="number"
+        [(ngModel)]="orderId"
+        (keypress)="allowOnlyPositive($event)"
+        placeholder="Enter Order ID"
+        min="1"
+      />
+ 
+      <div class="button-group">
+        <button (click)="validateOrderId()" [disabled]="!orderId">
+          🔍 Check Order ID
+        </button>
+      </div>
+    </div>
+ 
+    <p class="message" [class.error]="error" [class.success]="success">{{ message }}</p>
+ 
+    <div *ngIf="orderValid">
+      <!-- Hide payment method if payment is already done -->
+      <div class="payment-form" *ngIf="!paymentAlreadyDone">
+        <label for="paymentMethod">Payment Method</label>
+        <select id="paymentMethod" [(ngModel)]="paymentMethod">
+          <option value="" disabled selected>Select Payment Method</option>
+          <option value="UPI">UPI</option>
+          <option value="CreditCard">Credit Card</option>
+          <option value="NetBanking">Net Banking</option>
+        </select>
+ 
+        <div class="button-group">
+          <button (click)="makePayment()" [disabled]="!paymentMethod || loading">
+            <span *ngIf="!loading">💰 Make Payment</span>
+            <span *ngIf="loading" class="spinner"></span>
+          </button>
+        </div>
+      </div>
+ 
+      <div *ngIf="invoiceData" class="invoice-container">
+        <h3>🧾 Invoice for Order #{{ invoiceData.orderId }}</h3>
+        <p><strong>Billing Address:</strong> {{ invoiceData.billingAddress }}</p>
+        <p><strong>Phone:</strong> {{ invoiceData.phoneNumber }}</p>
+ 
+        <table class="invoice-table">
+          <thead>
+            <tr>
+              <th>Product Name</th>
+              <th>Category</th>
+              <th>Qty</th>
+              <th>Unit Price</th>
+              <th>Total</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let item of invoiceData.items">
+              <td>{{ item.productName }}</td>
+              <td>{{ item.category }}</td>
+              <td>{{ item.quantity }}</td>
+              <td>₹{{ item.unitPrice }}</td>
+              <td>₹{{ item.unitPrice * item.quantity }}</td>
+            </tr>
+          </tbody>
+        </table>
+ 
+        <div class="invoice-summary">
+          <p><strong>Subtotal:</strong> ₹{{ invoiceData.subtotal }}</p>
+          <p><strong>Tax (18%):</strong> ₹{{ invoiceData.tax }}</p>
+          <p><strong>Total:</strong> ₹{{ invoiceData.totalPrice }}</p>
+        </div>
+ 
+        <!-- Hide download button if payment is already done -->
+        <button class="download-btn"  (click)="downloadInvoicePdf()">
+          ⬇️ Download PDF
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+ 
+ 

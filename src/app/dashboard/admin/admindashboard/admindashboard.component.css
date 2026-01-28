@@ -1,0 +1,147 @@
+/* ================================
+   Dashboard Layout
+================================ */
+.dashboard-container {
+  padding: 24px;
+  font-family: "Inter", sans-serif;
+  background: #f7f9fc;
+  min-height: 100vh;
+}
+
+/* ================================
+   Stats Cards Grid
+================================ */
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 22px;
+  margin-bottom: 32px;
+}
+
+.stat-card {
+  padding: 22px;
+  border-radius: 18px;
+  text-align: center;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+
+  /* Default background gradient */
+  background: linear-gradient(135deg, #ffffff 0%, #f8fbff 100%);
+  
+  /* Shadow */
+  box-shadow: 
+    0 4px 10px rgba(0, 0, 0, 0.04),
+    0 8px 24px rgba(0, 0, 0, 0.06);
+}
+
+.stat-card:hover {
+  transform: translateY(-6px);
+  box-shadow:
+    0 8px 16px rgba(0, 0, 0, 0.08),
+    0 12px 32px rgba(0, 0, 0, 0.10);
+}
+
+.stat-card h3 {
+  margin: 0;
+  font-size: 17px;
+  font-weight: 600;
+  color: #475569;
+}
+
+.stat-card p {
+  font-size: 34px;
+  font-weight: 700;
+  margin-top: 12px;
+  /* Dynamic card colors */
+  color: #2563eb;
+}
+
+/* Add different colors for each card using modifiers */
+.stat-card.users p { color: #10b981; }          /* Total Users - Green */
+.stat-card.roles p { color: #3b82f6; }          /* Total Roles - Blue */
+.stat-card.status p { color: #f59e0b; }         /* Account Status - Amber */
+.stat-card.suppliers p { color: #ef4444; }      /* Suppliers - Red */
+
+/* ================================
+   Users Table Section
+================================ */
+.table-container {
+  background: white;
+  padding: 26px;
+  border-radius: 18px;
+
+  box-shadow: 
+    0 4px 10px rgba(0, 0, 0, 0.04),
+    0 8px 24px rgba(0, 0, 0, 0.06);
+}
+
+.table-container h2 {
+  font-size: 24px;
+  font-weight: 600;
+  color: #1e293b;
+  margin-bottom: 18px;
+}
+
+/* ================================
+   Table Styling
+================================ */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  background: white;
+}
+
+thead {
+  background: #e0f2fe; /* light blue header */
+}
+
+th {
+  padding: 14px;
+  font-size: 14px;
+  font-weight: 600;
+  color: #1e3a8a;
+  border-bottom: 2px solid #bfdbfe;
+}
+
+td {
+  padding: 12px 14px;
+  font-size: 14px;
+  color: #334155;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+/* Table rows hover effect */
+tbody tr {
+  transition: background 0.2s ease;
+}
+
+tbody tr:hover {
+  background: #f0f9ff; /* soft blue hover */
+}
+
+/* Status Colors */
+td.status-active {
+  color: #10b981; /* green */
+  font-weight: 600;
+}
+
+td.status-inactive {
+  color: #f59e0b; /* amber */
+  font-weight: 600;
+}
+
+td.status-locked {
+  color: #ef4444; /* red */
+  font-weight: 600;
+}
+
+/* Timestamp column softer */
+td:last-child {
+  color: #6b7280;
+  font-size: 13px;
+}
+
+/* Pie Chart Container */
+.pie-chart-container {
+  max-width: 300px; /* reduce width */
+  margin: 0 auto 32px auto; /* center horizontally and add spacing below */
+}

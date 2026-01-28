@@ -1,0 +1,63 @@
+<div class="production-layout">
+  <!-- Sidebar -->
+  <aside class="production-sidebar">
+    <h3 class="dashboard-title">
+      Production <br> Dashboard
+    </h3>
+
+    <!-- <button (click)="goHome()">
+      <i class="bi bi-house-door-fill me-2"></i> Home
+    </button> -->
+
+    <button (click)="goToSchedule()">
+      <i class="bi bi-calendar2-check me-2"></i> Create Schedule
+    </button>
+
+    <button (click)="goScheduleTracking()">
+      <i class="bi bi-graph-up me-2"></i> Track Schedule
+    </button>
+
+    <button (click)="goScheduleTimeline()">
+      <i class="bi bi-clock-history me-2"></i> Timeline
+    </button>
+
+    <button (click)="updatePassword()">
+      <i class="bi bi-key-fill me-2"></i> Update Password
+    </button>
+
+    <button class="btn-logout" (click)="logout()">
+      <i class="bi bi-box-arrow-right me-2"></i> Logout
+    </button>
+  </aside>
+
+  <!-- Main Content -->
+  <div class="production-main">
+    <!-- Header -->
+    <header class="production-header">
+      <h1>Welcome, {{ username }}</h1>
+
+      <div class="header-icons">
+
+         <a (click)="onHomeClick()" class="icon-link">
+          <img src="assets/home.png" alt="Home" class="icon" />
+        </a>
+        
+        <a (click)="onNotificationClick()" class="icon-link" title="Notifications">
+          <img src="assets/bell.png" alt="Notifications" class="icon" />
+        </a>
+        <div class="profile-container" (click)="toggleProfileMenu()">
+          <img src="assets/profile.png" alt="Profile" class="icon" />
+          <div class="profile-dropdown" *ngIf="profileMenuOpen">
+            <button (click)="updateProfile($event)">Update Profile</button>
+            <button (click)="logoutFromMenu($event)">Logout</button>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- Page Content -->
+    <div class="production-content">
+      <router-outlet></router-outlet>
+    </div>
+  </div>
+</div>

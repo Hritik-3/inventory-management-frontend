@@ -1,0 +1,24 @@
+<div class="manage-inventory-wrapper">
+  <mat-card class="inventory-card">
+    <div class="inventory-header-bar">
+      <h2>Manage Inventory</h2>
+    </div>
+ 
+    <div class="button-group">
+      <button mat-raised-button color="primary" (click)="goToAddCategory()">
+        + Add Category
+      </button>
+ 
+      <button mat-raised-button color="accent" (click)="goToAddProduct()">
+        + Add Product
+      </button>
+    </div>
+  </mat-card>
+ 
+  <!-- 👇 Child routes for Categories / Products -->
+  <div class="inventory-content-box">
+    <router-outlet></router-outlet>
+  </div>
+</div>
+ 
+ 

@@ -1,0 +1,132 @@
+/* Main container */
+.container {
+  background-color: #f8f9fc;
+  border-radius: 10px;
+  padding: 20px 30px;
+  box-shadow: 0 4px 10px rgba(108, 108, 255, 0.1);
+}
+
+/* Heading */
+h2 {
+  color: #003c8f; /* deep blue shade */
+  font-weight: 600;
+  margin-bottom: 20px;
+  border-left: 5px solid #0056b3;
+  padding-left: 10px;
+}
+
+/* Table styling */
+.table {
+  background-color: #ffffff;
+  border-radius: 8px;
+  overflow: hidden;
+  border: 1px solid #dee2e6;
+}
+
+.table-dark {
+  background-color: #003c8f !important;
+  color: #ffffff;
+}
+
+.table-hover tbody tr:hover {
+  background-color: #e9f3ff;
+  transition: 0.3s;
+}
+
+/* Table header */
+th {
+  text-align: center;
+  vertical-align: middle;
+}
+
+/* Table cells */
+td {
+  vertical-align: middle;
+}
+
+/* Buttons */
+.btn {
+  border-radius: 6px;
+  font-weight: 500;
+  transition: 0.3s;
+}
+
+.btn-primary {
+  background-color: #0066cc;
+  border: none;
+}
+
+.btn-primary:hover {
+  background-color: #004c99;
+}
+
+.btn-success {
+  background-color: #00a86b;
+  border: none;
+}
+
+.btn-success:hover {
+  background-color: #008c5a;
+}
+
+.btn-danger {
+  background-color: #d32f2f;
+  border: none;
+}
+
+.btn-danger:hover {
+  background-color: #b71c1c;
+}
+
+/* Form inputs */
+input.form-control {
+  border: 1px solid #cfd8dc;
+  border-radius: 5px;
+  padding: 5px 8px;
+}
+
+input.form-control:focus {
+  border-color: #1976d2;
+  box-shadow: 0 0 5px rgba(25, 118, 210, 0.3);
+}
+
+/* Alert message */
+.alert-info {
+  background-color: #e3f2fd;
+  border: 1px solid #90caf9;
+  color: #0d47a1;
+  border-radius: 5px;
+}
+
+/* Responsive behavior */
+@media (max-width: 768px) {
+  .container {
+    padding: 15px;
+  }
+
+  .table {
+    font-size: 14px;
+  }
+
+  h2 {
+    font-size: 20px;
+  }
+}
+
+.star-rating i {
+  font-size: 34px;
+  cursor: pointer;
+  color: #ffc107; /* gold */
+  margin: 0 2px;
+  transition: transform 0.15s ease-in-out;
+}
+
+.star-rating i:hover {
+  transform: scale(1.25);
+}
+
+.star-rating .full {
+  margin-left: -14px;   /* pull full star over half */
+}
+
+

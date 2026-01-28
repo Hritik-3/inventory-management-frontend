@@ -1,0 +1,120 @@
+/* 🔹 Main container */
+.dashboard-container {
+  padding: 20px;
+}
+
+/* 🔹 Dashboard title/subtitle (optional) */
+.dashboard-title {
+  font-size: 24px;
+  font-weight: 600;
+  margin-bottom: 4px;
+  color: #333;
+}
+
+.dashboard-subtitle {
+  font-size: 14px;
+  color: #777;
+  margin-bottom: 20px;
+}
+
+/* 🔹 Stat Cards Row */
+.dashboard-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 20px;
+}
+
+.stat-card {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+
+  padding: 16px 20px;
+  border-radius: 12px;
+  color: white;
+  font-weight: 700;
+
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.stat-card:hover {
+  transform: translateY(-4px) scale(1.02);
+  box-shadow: 0 8px 18px rgba(0, 0, 0, 0.25);
+}
+
+.card-icon {
+  font-size: 22px;
+  flex-shrink: 0;
+}
+
+.stat-card h3 {
+  font-size: 15px;
+  margin: 0;
+  font-weight: 500;
+  flex-grow: 1;
+}
+
+.card-value {
+  font-size: 18px;
+  font-weight: 600;
+  margin-left: auto;
+}
+
+/* 🔹 Gradient Backgrounds */
+.total { background: linear-gradient(135deg, #4a90e2, #357abd); }
+.stock { background: linear-gradient(135deg, #50c878, #2e8b57); }
+.low-stock { background: linear-gradient(135deg, #f5a623, #d48806); }
+.out-stock { background: linear-gradient(135deg, #d0021b, #a00015); }
+.over-stock { background: linear-gradient(135deg, #9b59b6, #6a1b9a); }
+
+/* 🔹 Charts Section */
+.charts-section {
+  margin-top: 2rem;
+  display: flex;            /* use flex for side-by-side charts */
+  gap: 2rem;
+  flex-wrap: wrap;          /* responsive wrap on smaller screens */
+  justify-content: center;  /* center charts on smaller screens */
+}
+
+.chart-title {
+  font-size: 20px;
+  font-weight: 800;
+  color: #333;
+  margin-bottom: 1rem;
+}
+
+.chart-container {
+  background: #fff;
+  padding: 1rem;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  text-align: center;
+  flex: 1;                  /* allow both charts to take equal space */
+  min-width: 300px;         /* responsive minimum width */
+  max-width: 550px;
+}
+
+.chart-container canvas {
+  width: 100% !important;   /* make canvas fully responsive */
+  height: 500px !important; /* adjusted height for better fit */
+  display: block;           /* remove inline spacing */
+}
+
+/* 🔹 Gradient Backgrounds (lighter shades) */
+.total { 
+  background: linear-gradient(135deg, #5498cf, #4a90e2); 
+}
+.stock { 
+  background: linear-gradient(135deg, #4fb275, #50c878); 
+}
+.low-stock { 
+  background: linear-gradient(135deg, #cfa04d, #f5a623); 
+}
+.out-stock { 
+  background: linear-gradient(135deg, #cf616c, #d0021b); 
+}
+.over-stock { 
+  background: linear-gradient(135deg, #b98cd9, #9b59b6); 
+}

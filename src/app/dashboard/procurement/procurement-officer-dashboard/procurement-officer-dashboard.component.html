@@ -1,0 +1,196 @@
+<div class="dashboard-container" *ngIf="!loading && dashboard">
+
+  <h2 class="dashboard-title">Procurement Officer Dashboard</h2>
+
+  <!-- ORDER DISTRIBUTION -->
+  <section class="card">
+    <h3>Order Distribution</h3>
+    <div class="chart-wrapper">
+      <canvas
+        baseChart
+        [data]="orderPieData"
+        [options]="orderChartOptions"
+        chartType="pie">
+      </canvas>
+    </div>
+  </section>
+
+  <!-- SUPPLIER ORDERS -->
+  <section class="card">
+    <h3>Supplier Orders</h3>
+    <table class="styled-table">
+      <thead>
+        <tr>
+          <th>PO ID</th>
+          <th>Date</th>
+          <th>Expected Delivery</th>
+          <th>Status</th>
+          <th>Supplier</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let o of dashboard.supplierOrders">
+          <td>{{ o.poId }}</td>
+          <td>{{ o.orderDate | date:'medium' }}</td>
+          <td>{{ o.expectedDelivery }}</td>
+          <td>
+            <span class="status" [ngClass]="o.deliveryStatus.toLowerCase()">
+              {{ o.deliveryStatus }}
+            </span>
+          </td>
+          <td>{{ o.supplierName }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+  <!-- CUSTOMER ORDERS -->
+  <section class="card">
+    <h3>Customer Orders</h3>
+    <table class="styled-table">
+      <thead>
+        <tr>
+          <th>PO ID</th>
+          <th>Date</th>
+          <th>Expected Delivery</th>
+          <th>Status</th>
+          <th>Customer</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let o of dashboard.customerOrders">
+          <td>{{ o.poId }}</td>
+          <td>{{ o.orderDate | date:'medium' }}</td>
+          <td>{{ o.expectedDelivery }}</td>
+          <td>
+            <span class="status" [ngClass]="o.deliveryStatus.toLowerCase()">
+              {{ o.deliveryStatus }}
+            </span>
+          </td>
+          <td>{{ o.customerName }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+  <!-- PENDING SUPPLIER ORDERS -->
+  <section class="card">
+    <h3>Pending Supplier Orders</h3>
+
+    <div class="empty" *ngIf="dashboard.pendingSupplierOrders.length === 0">
+      No pending supplier orders
+    </div>
+
+    <table class="styled-table" *ngIf="dashboard.pendingSupplierOrders.length > 0">
+      <thead>
+        <tr>
+          <th>PO ID</th>
+          <th>Date</th>
+          <th>Expected Delivery</th>
+          <th>Supplier</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let o of dashboard.pendingSupplierOrders">
+          <td>{{ o.poId }}</td>
+          <td>{{ o.orderDate | date:'medium' }}</td>
+          <td>{{ o.expectedDelivery }}</td>
+          <td>{{ o.supplierName }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+  <!-- PENDING CUSTOMER ORDERS -->
+  <section class="card">
+    <h3>Pending Customer Orders</h3>
+
+    <div class="empty" *ngIf="dashboard.pendingCustomerOrders.length === 0">
+      No pending customer orders
+    </div>
+
+    <table class="styled-table" *ngIf="dashboard.pendingCustomerOrders.length > 0">
+      <thead>
+        <tr>
+          <th>PO ID</th>
+          <th>Date</th>
+          <th>Expected Delivery</th>
+          <th>Customer</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let o of dashboard.pendingCustomerOrders">
+          <td>{{ o.poId }}</td>
+          <td>{{ o.orderDate | date:'medium' }}</td>
+          <td>{{ o.expectedDelivery }}</td>
+          <td>{{ o.customerName }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+  <!-- IN TRANSIT ORDERS -->
+  <section class="card">
+    <h3>In Transit Orders</h3>
+
+    <div class="empty" *ngIf="dashboard.inTransitOrders.length === 0">
+      No in-transit orders
+    </div>
+
+    <table class="styled-table" *ngIf="dashboard.inTransitOrders.length > 0">
+      <thead>
+        <tr>
+          <th>PO ID</th>
+          <th>Date</th>
+          <th>Expected Delivery</th>
+          <th>Status</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let o of dashboard.inTransitOrders">
+          <td>{{ o.poId }}</td>
+          <td>{{ o.orderDate | date:'medium' }}</td>
+          <td>{{ o.expectedDelivery }}</td>
+          <td>
+            <span class="status in-transit">In Transit</span>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+  <!-- DELIVERED ORDERS -->
+  <section class="card">
+    <h3>Delivered Orders</h3>
+    <table class="styled-table">
+      <thead>
+        <tr>
+          <th>PO ID</th>
+          <th>Date</th>
+          <th>Expected Delivery</th>
+          <th>Status</th>
+          <th>Customer/Supplier</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let o of dashboard.deliveredOrders">
+          <td>{{ o.poId }}</td>
+          <td>{{ o.orderDate | date:'medium' }}</td>
+          <td>{{ o.expectedDelivery }}</td>
+          <td>
+            <span class="status delivered">Delivered</span>
+          </td>
+         <td>
+           {{ o.customerName || o.supplierName }}
+         </td>
+
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+</div>
+
+<div *ngIf="loading" class="loading">
+  Loading dashboard...
+</div>

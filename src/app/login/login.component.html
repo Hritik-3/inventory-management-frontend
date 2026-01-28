@@ -1,0 +1,97 @@
+<div class="container">
+  <header class="navbar">
+    <div class="logo">
+      <img src="https://img.icons8.com/ios-filled/50/000000/box.png" alt="Logo" />
+      <span>Next Gen Order Craft Management System for Manufacturing Efficiency</span>
+    </div>
+    <nav class="nav-links">
+      <a href="#">Features</a>
+      <a href="#">About</a>
+      <a href="#">Contact</a>
+    </nav>
+  </header>
+
+  <main class="main-content">
+    <div class="content-wrapper">
+      <!-- Left Section -->
+      <div class="left-section">
+        <span class="badge">Professional Inventory Management</span>
+        <h1>Streamline Your Inventory Operations</h1>
+        <p>
+          Comprehensive inventory management system for tracking orders, processing returns,
+          and managing customer relationships with enterprise-grade reliability.
+        </p>
+      </div>
+
+      <!-- Right Section -->
+      <div class="right-section">
+        <div class="login-box">
+          <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+            <h3>Login to Dashboard</h3>
+
+      <!-- Email -->
+
+
+
+
+<label for="username">📧 Email Address</label>
+<input
+  type="username"
+  formControlName="username"
+  placeholder="Enter email"
+  class="form-control"
+  [ngClass]="{'shake': loginForm.get('username')?.invalid && loginForm.get('username')?.touched}"
+/>
+<div *ngIf="loginForm.get('username')?.invalid && loginForm.get('username')?.touched" class="text-danger">
+  Email is required
+</div>
+
+  <!-- Password -->
+<label for="password">🔒 Password</label>
+<input
+  type="password"
+  formControlName="password"
+  placeholder="Enter password"
+  class="form-control mt-2"
+  [ngClass]="{'shake': loginForm.get('password')?.invalid && loginForm.get('password')?.touched}"
+/>
+<div *ngIf="loginForm.get('password')?.invalid && loginForm.get('password')?.touched" class="text-danger">
+  Password is required
+</div>
+
+            <!-- CAPTCHA -->
+            <label>🔐 CAPTCHA</label>
+            <div class="captcha-container">
+              <span class="captcha-text">{{ captchaText }}</span>
+              <button type="button" class="refresh-captcha" (click)="generateCaptcha()">↻</button>
+            </div>
+           <input
+  type="text"
+  placeholder="Enter CAPTCHA"
+  [(ngModel)]="userCaptcha"
+  name="userCaptcha"
+  [ngModelOptions]="{standalone: true}"
+  required
+/>
+
+
+            <!-- Submit Button -->
+            <button type="submit" [disabled]="loginForm.invalid" class="btn login-btn">
+              Sign In
+            </button>
+
+            <!-- Error Message -->
+            <p class="error" *ngIf="loginError">{{ loginError }}</p>
+          </form>
+
+          <!-- Forgot Password -->
+          <button type="button" class="forgot-btn" (click)="navigateToForgotPassword()">
+            Forgot Password?
+          </button>
+
+          <p class="demo-hint">Use email and password to login</p>
+        </div>
+      </div>
+    </div>
+  </main>
+</div>

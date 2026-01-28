@@ -1,0 +1,121 @@
+<div class="container mt-4">
+  <h2 class="mb-4 text-center fw-bold text-primary">Procurement & Customer Orders</h2>
+
+  <!-- Loading Spinner -->
+  <div *ngIf="loading" class="text-center text-muted py-4">
+    <div class="spinner-border text-primary" role="status">
+      <span class="visually-hidden">Loading...</span>
+    </div>
+    <p class="mt-2">Fetching all orders...</p>
+  </div>
+
+  <!-- Error Message -->
+  <div *ngIf="errorMessage" class="alert alert-danger text-center">
+    {{ errorMessage }}
+  </div>
+
+  <!-- Orders Table -->
+  <div class="table-responsive" *ngIf="!loading && orders.length > 0">
+    <table class="table table-hover align-middle shadow-sm">
+      <thead class="table-primary text-center">
+        <tr>
+          <th>Order ID</th>
+          <th>Party Name</th>
+          <th>Order Date</th>
+          <th>Expected Delivery</th>
+          <th>Order Type</th>
+          <th>Current Status</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+
+      <tbody class="text-center">
+        <tr *ngFor="let order of orders">
+          <td>{{ order.poId }}</td>
+
+          <!-- ✅ Dynamic name based on order type -->
+          <td>
+            <span *ngIf="order.poOrderType === 'SUPPLIER_ORDER'; else customerName">
+              {{ order.supplierName || 'N/A' }}
+            </span>
+            <ng-template #customerName>
+              {{ order.customerName || 'N/A' }}
+            </ng-template>
+          </td>
+
+          <td>{{ order.poOrderDate | date:'short' }}</td>
+          <td>{{ order.poExpectedDelivery_date | date:'shortDate' }}</td>
+
+          <!-- ✅ Highlighted order type -->
+          <td>
+            <span class="badge"
+                  [ngClass]="{
+                    'bg-info text-dark': order.poOrderType === 'SUPPLIER_ORDER',
+                    'bg-success': order.poOrderType === 'CUSTOMER_ORDER',
+                    'bg-secondary': !order.poOrderType
+                  }">
+              {{ order.poOrderType || 'UNKNOWN' }}
+            </span>
+          </td>
+
+          <!-- ✅ Status badge -->
+          <td>
+            <span class="badge px-3 py-2"
+                  [ngClass]="{
+                    'bg-warning text-dark': order.poDeliveryStatus === 'CREATED',
+                    'bg-primary': order.poDeliveryStatus === 'PACKING',
+                    'bg-info text-dark': order.poDeliveryStatus === 'UNDER_PRODUCTION',
+                    'bg-success': order.poDeliveryStatus === 'DELIVERED',
+                    'bg-secondary': !order.poDeliveryStatus
+                  }">
+              {{ order.poDeliveryStatus || 'N/A' }}
+            </span>
+          </td>
+
+          <!-- ✅ Action buttons (only for Supplier Orders) -->
+          <td>
+            <div class="d-flex justify-content-center gap-2">
+              <!-- Hide actions for CUSTOMER_ORDER -->
+              <ng-container *ngIf="order.poOrderType === 'SUPPLIER_ORDER'; else noActions">
+                <button class="btn btn-outline-success btn-sm"
+                        *ngIf="order.poDeliveryStatus === 'CREATED'"
+                        (click)="updateOrderStatus(order.poId, 'PACKING')">
+                  <i class="bi bi-box-seam me-1"></i> Set as Packing
+                </button>
+
+                <button class="btn btn-outline-warning btn-sm text-dark"
+                        *ngIf="order.poDeliveryStatus === 'PACKING'"
+                        (click)="updateOrderStatus(order.poId, 'UNDER_PRODUCTION')">
+                  <i class="bi bi-gear-wide-connected me-1"></i> Send for Production
+                </button>
+
+                <button class="btn btn-outline-primary btn-sm"
+                        *ngIf="order.poDeliveryStatus === 'UNDER_PRODUCTION'"
+                        (click)="updateOrderStatus(order.poId, 'DELIVERED')">
+                  <i class="bi bi-truck me-1"></i> Mark Delivered
+                </button>
+
+                <button class="btn btn-outline-secondary btn-sm" 
+                        *ngIf="order.poDeliveryStatus === 'DELIVERED'" disabled>
+                  <i class="bi bi-check2-circle me-1"></i> Delivered
+                </button>
+              </ng-container>
+
+              <ng-template #noActions>
+                <button class="btn btn-light btn-sm" disabled>
+                  <i class="bi bi-lock me-1"></i> No Actions
+                </button>
+              </ng-template>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- No Data Found -->
+  <div *ngIf="!loading && orders.length === 0" class="text-center text-muted py-4">
+    <i class="bi bi-inbox fs-2 d-block mb-2"></i>
+    No orders found.
+  </div>
+</div>

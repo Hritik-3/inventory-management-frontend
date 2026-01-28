@@ -1,0 +1,151 @@
+<!-- Registration Form -->
+<div class="blurred-wrapper">
+  <div class="container mt-5">
+    <div class="row justify-content-center">
+      <div class="col-xl-10 col-lg-12">
+        <div class="card shadow-lg border-0 rounded-3">
+          <div class="card-header bg-primary text-white text-center py-3">
+            <h4 class="mb-0">User Registration</h4>
+          </div>
+
+          <div class="card-body px-5 py-4">
+
+            <!-- Mandatory Fields Note -->
+            <p class="text-danger mb-4">* All fields are mandatory</p>
+
+            <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+
+              <!-- User Info -->
+              <div class="row mb-3">
+                <div class="col-md-6">
+                  <label class="form-label">Full Name <span class="text-danger">*</span></label>
+                  <input type="text" formControlName="userFullName" class="form-control" placeholder="John Doe" />
+                  <div class="text-danger small" *ngIf="registerForm.get('userFullName')?.touched && registerForm.get('userFullName')?.invalid">
+                    <ng-container *ngIf="registerForm.get('userFullName')?.errors?.['required']">
+                      Full Name is required.
+                    </ng-container>
+                    <ng-container *ngIf="registerForm.get('userFullName')?.errors?.['pattern']">
+                      Full Name cannot contain numbers or special characters.
+                    </ng-container>
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <label class="form-label">Username <span class="text-danger">*</span></label>
+                  <input type="text" formControlName="userName" class="form-control" placeholder="johndoe" />
+                  <div class="text-danger small" *ngIf="registerForm.get('userName')?.touched && registerForm.get('userName')?.invalid">
+                    <ng-container *ngIf="registerForm.get('userName')?.errors?.['required']">
+                      Username is required.
+                    </ng-container>
+                    <ng-container *ngIf="registerForm.get('userName')?.errors?.['pattern']">
+                      Username cannot contain numbers or special characters.
+                    </ng-container>
+                  </div>
+                </div>
+              </div>
+
+              <div class="row mb-3">
+                <div class="col-md-6">
+                  <label class="form-label">Mobile <span class="text-danger">*</span></label>
+                  <input type="text" formControlName="userMobile" class="form-control" placeholder="9876543210" />
+                  <div class="text-danger small" *ngIf="registerForm.get('userMobile')?.touched && registerForm.get('userMobile')?.invalid">
+                    <ng-container *ngIf="registerForm.get('userMobile')?.errors?.['required']">
+                      Mobile number is required.
+                    </ng-container>
+                    <ng-container *ngIf="registerForm.get('userMobile')?.errors?.['pattern']">
+                      Enter a valid 10-digit mobile number.
+                    </ng-container>
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <label class="form-label">Email <span class="text-danger">*</span></label>
+                  <input type="email" formControlName="userEmail" class="form-control" placeholder="email@example.com" />
+                  <div class="text-danger small" *ngIf="registerForm.get('userEmail')?.touched && registerForm.get('userEmail')?.invalid">
+                    <ng-container *ngIf="registerForm.get('userEmail')?.errors?.['required']">
+                      Email is required.
+                    </ng-container>
+                    <ng-container *ngIf="registerForm.get('userEmail')?.errors?.['email']">
+                      Enter a valid email address.
+                    </ng-container>
+                  </div>
+                </div>
+              </div>
+
+              <!-- <div class="mb-3">
+                <label class="form-label">Profile Image URL</label>
+                <input type="text" formControlName="userProfileImg" class="form-control" placeholder="http://..." />
+              </div> -->
+
+              <!-- Role Section -->
+              <div class="bg-light p-3 rounded mb-4" formGroupName="role">
+  <h5 class="mb-3">Assign Role</h5>
+  <div class="mb-3">
+    <label class="form-label">Select Role <span class="text-danger">*</span></label>
+   <select class="form-select" formControlName="roleName" (change)="onRoleChange($event)">
+  <option value="" disabled>Select Role</option>
+  <ng-container *ngFor="let role of roles">
+    <option *ngIf="role.roleName.toLowerCase() !== 'admin'" [value]="role.roleName">
+      {{ role.roleName }}
+    </option>
+  </ng-container>
+</select>
+    <div class="text-danger small" *ngIf="registerForm.get('role.roleName')?.touched && registerForm.get('role.roleName')?.invalid">
+      Role selection is required.
+    </div>
+  </div>
+  <input type="hidden" formControlName="roleId" />
+</div>
+
+
+              <!-- Address Section -->
+              <div class="bg-light p-3 rounded" formGroupName="address">
+                <h5 class="mb-3">User Address</h5>
+                <div class="row mb-3">
+                  <div class="col-md-4">
+                    <label class="form-label">Street <span class="text-danger">*</span></label>
+                    <input type="text" formControlName="addressStreet" class="form-control" placeholder="123 Street Name" />
+                  </div>
+                  <div class="col-md-4">
+                    <label class="form-label">City <span class="text-danger">*</span></label>
+                    <input type="text" formControlName="addressCity" class="form-control" placeholder="City" />
+                  </div>
+                  <div class="col-md-4">
+                    <label class="form-label">State <span class="text-danger">*</span></label>
+                    <input type="text" formControlName="addressState" class="form-control" placeholder="State" />
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-6 mb-3">
+                    <label class="form-label">Postal Code <span class="text-danger">*</span></label>
+                    <input type="text" formControlName="addressPostalCode" class="form-control" placeholder="PIN/ZIP" />
+                    <div class="text-danger small" *ngIf="registerForm.get('address.addressPostalCode')?.touched && registerForm.get('address.addressPostalCode')?.invalid">
+                      <ng-container *ngIf="registerForm.get('address.addressPostalCode')?.errors?.['required']">
+                        Postal code is required.
+                      </ng-container>
+                      <ng-container *ngIf="registerForm.get('address.addressPostalCode')?.errors?.['pattern']">
+                        Enter a valid 6-digit postal code.
+                      </ng-container>
+                    </div>
+                  </div>
+                  <div class="col-md-6 mb-3">
+                    <label class="form-label">Country <span class="text-danger">*</span></label>
+                    <input type="text" formControlName="addressCountry" class="form-control" placeholder="Country" />
+                  </div>
+                </div>
+              </div>
+
+              <!-- Submit -->
+              <div class="text-center mt-4">
+                <button type="submit" class="btn btn-success px-5" [disabled]="registerForm.invalid">Register User</button>
+              </div>
+
+              <div class="text-center mt-2">
+                <button class="btn btn-secondary px-5" [routerLink]="['/admin']">Back</button>
+              </div>
+
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,73 @@
+<mat-card class="category-card" *ngIf="!showForm">
+  <!-- Header -->
+  <div class="category-header-bar">
+    <h2>Categories</h2>
+    <button mat-raised-button color="primary" (click)="add()">+ Add Category</button>
+  </div>
+
+  <!-- Category Table -->
+  <table mat-table [dataSource]="categories" class="mat-elevation-z2 category-table">
+    <!-- ID -->
+    <ng-container matColumnDef="categoriesId">
+      <th mat-header-cell *matHeaderCellDef> ID </th>
+      <td mat-cell *matCellDef="let c"> {{ c.categoriesId }} </td>
+    </ng-container>
+
+    <!-- Name -->
+    <ng-container matColumnDef="categoryName">
+      <th mat-header-cell *matHeaderCellDef> Category Name </th>
+      <td mat-cell *matCellDef="let c"> {{ c.categoryName }} </td>
+    </ng-container>
+
+    <!-- Actions -->
+    <ng-container matColumnDef="actions">
+      <th mat-header-cell *matHeaderCellDef class="action-header"> Actions </th>
+      <td mat-cell *matCellDef="let c" class="action-cell">
+        <button mat-stroked-button color="accent" (click)="edit(c)">✏️ Edit</button>
+        <button mat-stroked-button color="warn" (click)="delete(c.categoriesId)">🗑 Delete</button>
+      </td>
+    </ng-container>
+
+    <!-- Rows -->
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>
+</mat-card>
+
+<!-- Category Form -->
+<mat-card class="form-card" *ngIf="showForm">
+  <div class="category-header-bar">
+    <h2>{{ isEdit ? 'Edit Category' : 'Create New Category' }}</h2>
+  </div>
+
+  <form [formGroup]="form" (ngSubmit)="save()" class="form-grid">
+    <div class="form-row">
+      <!-- Category ID -->
+      <mat-form-field appearance="fill" class="form-field">
+        <mat-label>Category ID</mat-label>
+        <input matInput type="number" formControlName="categoriesId" required />
+        <mat-error *ngIf="form.get('categoriesId')?.hasError('required')">Category ID is required</mat-error>
+        <mat-error *ngIf="form.get('categoriesId')?.hasError('pattern')">Only numbers allowed</mat-error>
+      </mat-form-field>
+
+      <!-- Category Name -->
+      <mat-form-field appearance="fill" class="form-field">
+        <mat-label>Category Name</mat-label>
+        <input matInput formControlName="categoryName" required />
+        <mat-error *ngIf="form.get('categoryName')?.hasError('required')">Category name is required</mat-error>
+        <mat-error *ngIf="form.get('categoryName')?.hasError('pattern')">Only alphabets allowed</mat-error>
+        <mat-error *ngIf="form.get('categoryName')?.hasError('maxlength')">Maximum 100 characters allowed</mat-error>
+      </mat-form-field>
+    </div>
+
+    <!-- Actions -->
+    <div class="actions">
+      <button mat-raised-button color="primary" type="submit" [disabled]="form.invalid">
+        {{ isEdit ? 'Update' : 'Save' }}
+      </button>
+      <button mat-stroked-button color="warn" type="button" (click)="cancel()">
+        Cancel
+      </button>
+    </div>
+  </form>
+</mat-card>

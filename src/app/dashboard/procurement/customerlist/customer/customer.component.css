@@ -1,0 +1,55 @@
+.card {
+  background: rgba(255, 255, 255, 0.9);
+  border-radius: 20px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.25);
+  overflow: hidden;
+  backdrop-filter: blur(10px);
+  min-height: 500px; /* makes card bigger */
+}
+.card-header {
+  background: linear-gradient(to right, #457ec4, #8fd3f4);
+  color: #fff;
+  padding: 1.2rem;
+  text-align: center;
+  font-weight: 600;
+  font-size: 1.5rem;
+  letter-spacing: 0.5px;
+}
+.card-body {
+  background-color: #ffffff;
+  border-radius: 0 0 20px 20px;
+}
+input.form-control,
+textarea.form-control {
+  border-radius: 8px;
+  padding: 12px;
+  font-size: 14px;
+  transition: all 0.3s ease;
+}
+input:focus,
+textarea:focus {
+  border-color: #457ec4;
+  box-shadow: 0 0 6px rgba(132, 250, 176, 0.6);
+}
+button.btn-success {
+  background: linear-gradient(to right, #457ec4, #8fd3f4);
+  border: none;
+  border-radius: 8px;
+  padding: 12px 30px;
+  font-weight: bold;
+  font-size: 16px;
+  transition: background 0.3s ease;
+}
+button.btn-success:hover {
+  background: linear-gradient(to right, #8fd3f4, #457ec4);
+}
+button.btn-secondary {
+  border-radius: 8px;
+  padding: 12px 30px;
+  font-size: 16px;
+  font-weight: 500;
+}
+.text-danger.small {
+  margin-top: 4px;
+  font-size: 12px;
+}

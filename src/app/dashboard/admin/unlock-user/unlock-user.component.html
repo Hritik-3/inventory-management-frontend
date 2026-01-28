@@ -1,0 +1,51 @@
+<div class="container mt-4">
+  <h2>🔓 Unlock User Accounts</h2>
+
+  <div class="mb-3">
+    <input
+      [formControl]="searchControl"
+      placeholder="Search by email or username"
+      class="form-control"
+    />
+    <button (click)="search()" class="btn btn-primary mt-2">Search</button>
+  </div>
+
+  <p *ngIf="loading">Loading...</p>
+  <p *ngIf="error" class="text-danger">{{ error }}</p>
+
+  <table *ngIf="results.length > 0" class="table table-bordered mt-3">
+    <thead>
+      <tr>
+        <th>Email</th>
+        <th>Username</th>
+        <th>Account Status</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let user of results">
+        <td>{{ user.userEmail }}</td>
+        <td>{{ user.userName }}</td>
+        <td>
+          <span [ngClass]="{'text-success': !user.accountLocked, 'text-danger': user.accountLocked}">
+            {{ user.accountLocked ? 'Locked' : 'Active' }}
+          </span>
+        </td>
+        <td>
+          <button
+            *ngIf="user.accountLocked"
+            (click)="unlock(user.userEmail)"
+            class="btn btn-warning btn-sm"
+          >
+            Unlock
+          </button>
+          <span *ngIf="!user.accountLocked">—</span>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <p *ngIf="!loading && results.length === 0 && !error">
+    No users found.
+  </p>
+</div>

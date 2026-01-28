@@ -1,0 +1,24 @@
+<div class="report-container">
+   <app-back-button></app-back-button>
+   <br>
+   <br>
+<h2 class="section-title">📦 Stock Report</h2>
+<div class="btn-group mb-4">
+<button class="btn btn-primary" (click)="downloadStock('pdf')">Download PDF</button>
+<button class="btn btn-outline-primary" (click)="downloadStock('csv')">Download CSV</button>
+</div>
+ 
+  <h2 class="section-title">💳 Transaction Report</h2>
+<div class="btn-group mb-4">
+<button class="btn btn-primary" (click)="downloadTransaction('pdf')">Download PDF</button>
+<button class="btn btn-outline-primary" (click)="downloadTransaction('csv')">Download CSV</button>
+</div>
+ 
+  <h2 class="section-title">🏭 Production Report</h2>
+<div class="btn-group mb-4">
+<button class="btn btn-primary" (click)="downloadProduction('pdf')">Download PDF</button>
+<button class="btn btn-outline-primary" (click)="downloadProduction('csv')">Download CSV</button>
+</div>
+</div>
+
+ 

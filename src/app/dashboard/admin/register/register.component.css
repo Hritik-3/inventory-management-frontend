@@ -1,0 +1,85 @@
+.card {
+  background: rgba(255, 255, 255, 0.85);
+  border-radius: 20px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+  overflow: hidden;
+  backdrop-filter: blur(10px);
+}
+
+.card-header {
+  background: linear-gradient(to right, #457ec4, #8fd3f4);
+  color: #fff;
+  padding: 1rem;
+  text-align: center;
+  font-weight: 600;
+  font-size: 1.25rem;
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+}
+
+.card-body {
+  background-color: #ffffff;
+  border-radius: 0 0 20px 20px;
+}
+
+input.form-control,
+select.form-select {
+  border-radius: 8px;
+  padding: 10px;
+  font-size: 14px;
+  box-shadow: none;
+  transition: all 0.3s ease;
+}
+
+input.form-control:focus,
+select.form-select:focus {
+  border-color: #457ec4;
+  box-shadow: 0 0 5px rgba(132, 250, 176, 0.5);
+}
+
+.bg-light {
+  background-color: #f8f9fa !important;
+  border-radius: 12px;
+  padding: 20px;
+}
+
+button.btn-success {
+  background: linear-gradient(to right, #457ec4, #8fd3f4);
+  border: none;
+  border-radius: 8px;
+  padding: 10px 25px;
+  font-weight: bold;
+  font-size: 16px;
+  transition: background 0.3s ease;
+}
+
+button.btn-success:hover {
+  background: linear-gradient(to right, #8fd3f4, #457ec4);
+}
+
+h4, h5 {
+  font-weight: 700;
+}
+
+.custom-navbar {
+  background-color: #fff;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+
+.profile-img {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid #eee;
+}
+
+.notification-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  display: inline-block;
+}

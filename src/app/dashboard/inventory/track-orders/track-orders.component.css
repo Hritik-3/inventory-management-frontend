@@ -1,0 +1,150 @@
+/*Css styling for tracking orders*/
+/* Full container layout */
+:host {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  height: 100%;
+  background-color: #f3f4f6;
+  padding: 16px;
+}
+ 
+/* Card container */
+.page-card {
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+ 
+/* Title */
+.page-card h2 {
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: #1f2937;
+  margin-bottom: 20px;
+}
+ 
+/* Search bar area */
+.search-bar {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  margin-bottom: 20px;
+}
+ 
+.search-bar input[type="number"] {
+  border: 1px solid #d1d5db;
+  border-radius: 8px;
+  padding: 8px 10px;
+  font-size: 14px;
+  width: 250px;
+  transition: all 0.2s;
+}
+ 
+.search-bar input[type="number"]:focus {
+  outline: none;
+  border-color: #2563eb;
+  box-shadow: 0 0 0 2px rgba(37, 99, 235, 0.2);
+}
+ 
+/* Button base */
+button {
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 600;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 8px;
+  transition: all 0.2s ease-in-out;
+}
+ 
+/* Primary buttons */
+button.bg-blue-600 {
+  background-color: #2563eb;
+  color: white;
+}
+button.bg-blue-600:hover {
+  background-color: #1d4ed8;
+}
+ 
+button.bg-gray-500 {
+  background-color: #6b7280;
+  color: white;
+}
+button.bg-gray-500:hover {
+  background-color: #4b5563;
+}
+ 
+/* Table styles */
+.table-scroll-container {
+  flex: 1;
+  max-height: 400px;
+  overflow-y: auto;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+}
+ 
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+ 
+th {
+  position: sticky;
+  top: 0;
+  background-color: #f9fafb;
+  padding: 12px;
+  font-size: 14px;
+  font-weight: 600;
+  color: #374151;
+  border-bottom: 2px solid #e5e7eb;
+}
+ 
+td {
+  padding: 12px;
+  border-bottom: 1px solid #e5e7eb;
+  font-size: 14px;
+  color: #4b5563;
+}
+ 
+/* Row hover effect */
+tbody tr:hover {
+  background-color: #f3f4f6;
+}
+ 
+/* Action buttons */
+button.bg-green-500 {
+  background-color: #22c55e;
+  color: white;
+}
+button.bg-green-500:hover:enabled {
+  background-color: #16a34a;
+}
+ 
+button.bg-red-500 {
+  background-color: #ef4444;
+  color: white;
+}
+button.bg-red-500:hover:enabled {
+  background-color: #dc2626;
+}
+ 
+button:disabled {
+  background-color: #9ca3af;
+  cursor: not-allowed;
+  font-size: 12px;
+}
+ 
+/* No data message */
+.no-data {
+  color: #6b7280;
+  text-align: center;
+  font-style: italic;
+  margin-top: 20px;
+}
+ 
+ 

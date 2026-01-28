@@ -1,0 +1,204 @@
+<!-- <div class="dashboard"> -->
+  <!-- Header Section -->
+  <!-- <div class="dashboard-header">
+    <h2>All Orders</h2>
+    <div class="summary-tags">
+      <span class="tag total">Total Orders: {{ orders.length }}</span>
+      <span class="tag returned">Returned Orders: {{ returnedOrdersCount }}</span>
+    </div>
+  </div> -->
+
+  <!-- Filter Section -->
+  <!-- <div class="filters">
+    <input type="text" placeholder="Search by Order ID" [(ngModel)]="searchOrderId" (ngModelChange)="applyFilters()" />
+    <input type="text" placeholder="Search by Customer" [(ngModel)]="searchCustomer" (ngModelChange)="applyFilters()" />
+    <input type="date" [(ngModel)]="filterDate" (change)="applyFilters()" />
+    <button (click)="clearFilters()">Clear Filters</button>
+  </div>
+
+   Order Cards -->
+  <!-- <div *ngIf="filtered.length > 0; else noData" class="order-cards">
+    <div class="order-card" *ngFor="let order of filtered">
+      <div class="order-header">
+        <div>
+          <h3>Order ID: {{ order.poId }}</h3>
+          <p>Customer: {{ order.customerName || 'N/A' }}</p>
+          <p>Date: {{ order.orderDate | date: 'yyyy-MM-dd' }}</p>
+          <p>Order Status: {{order.deliveryStatus}}</p>
+        </div>
+      </div> -->
+
+      <!-- <div class="order-items">
+        <h4>Items</h4>
+        <div *ngFor="let item of order.items" class="item-row">
+          <span class="product-name">{{ item.productName }}</span>
+          <span
+            class="quantity-badge"
+            [ngClass]="{
+              'badge-returned': item.returnedQuantity === item.quantity,
+              'badge-pending': !item.returnedQuantity,
+              'badge-partial': item.returnedQuantity && item.returnedQuantity < item.quantity
+            }"
+          >
+            {{ item.returnedQuantity || 0 }}/{{ item.quantity }}
+          </span>
+
+          <div class="action-buttons">
+            <button
+              *ngIf="item.returnedQuantity < item.quantity"
+              class="btn-return"
+              (click)="returnItem(order.poId, item.purchaseOrderItemId)"
+            >
+              Return
+            </button>
+
+            <button
+              class="btn-edit"
+              type="button"
+              [routerLink]="['../edit-order', order.poId]"
+            >
+              Edit Order
+            </button>
+
+            <span *ngIf="item.returnedQuantity === item.quantity" class="done-label">✔ Returned</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>  -->
+
+  <!-- Modal -->
+<!-- <app-confirm-return-modal
+  *ngIf="showModal"
+  [item]="selectedItem"
+  [poId]="selectedPoId"
+  [podeliveryStatus]="modalDeliveryStatus"
+  (confirm)="handleModalConfirm($event)"
+  (close)="handleModalClose()">
+</app-confirm-return-modal> -->
+
+
+
+  <!-- No data -->
+  <!-- <ng-template #noData>
+    <p class="no-orders-msg">No orders found.</p>
+  </ng-template>
+</div> -->
+
+
+<div class="dashboard">
+  <!-- Header Section -->
+  <div class="dashboard-header">
+ 
+    <div class="header-left">
+         <!-- 🔙 Back Button -->
+<button class="btn-back" (click)="goBack()">
+  <i class="bi bi-arrow-left"></i>
+</button>
+      <h2>All Orders</h2>
+      <div class="summary-tags">
+        <span class="tag total">Total Orders: {{ orders.length }}</span>
+        <span class="tag returned">Returned Orders: {{ returnedOrdersCount }}</span>
+      </div>
+    </div>
+
+    <div class="header-right">
+      <button class="btn-view-returns" (click)="viewReturn()">
+        <i class="bi bi-arrow-return-left me-2"></i> View Returns
+      </button>
+    </div>
+  </div>
+
+  <!-- Filter Section -->
+  <div class="filters">
+    <input type="text" placeholder="Search by Order ID" [(ngModel)]="searchOrderId" (ngModelChange)="applyFilters()" />
+    <input type="text" placeholder="Search by Customer" [(ngModel)]="searchCustomer" (ngModelChange)="applyFilters()" />
+    <input type="date" [(ngModel)]="filterDate" (change)="applyFilters()" />
+    <button (click)="clearFilters()">Clear Filters</button>
+  </div>
+
+  <!-- Table View -->
+  <div *ngIf="filtered.length > 0; else noData" class="orders-table">
+    <table>
+      <thead>
+        <tr>
+          <th>Order ID</th>
+          <th>Customer</th>
+          <th>Expected Delivery Date</th>
+          <th>Status</th>
+          <th>Product Name</th>
+          <th>Returned Qty</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <ng-container *ngFor="let order of filtered">
+          <tr *ngFor="let item of order.items">
+            <td>{{ order.poId }}</td>
+            <td>{{ order.customerName || 'N/A' }}</td>
+            <td>{{ order.orderDate | date: 'yyyy-MM-dd' }}</td>
+            <td>{{ order.deliveryStatus }}</td>
+            <td>{{ item.productName }}</td>
+            <td>
+              <span
+                class="quantity-badge"
+                [ngClass]="{
+                  'badge-returned': item.returnedQuantity === item.quantity,
+                  'badge-pending': !item.returnedQuantity,
+                  'badge-partial': item.returnedQuantity && item.returnedQuantity < item.quantity
+                }"
+              >
+                {{ item.returnedQuantity || 0 }}/{{ item.quantity }}
+              </span>
+            </td>
+            <td>
+              <div class="action-buttons">
+                <button
+                  *ngIf="item.returnedQuantity < item.quantity"
+                  class="btn-return"
+                  (click)="returnItem(order.poId, item.purchaseOrderItemId)"
+                >
+                  Return
+                </button>
+
+                <button
+                  class="btn-edit"
+                  type="button"
+                  [routerLink]="['../edit-order', order.poId]"
+                >
+                  Edit Order
+                </button>
+                <button
+  type="button"
+  class="btn-report"
+  (click)="downloadReport(order.poId)"
+>
+  <i class="bi bi-file-earmark-pdf"></i>
+  
+</button>
+
+
+                <span *ngIf="item.returnedQuantity === item.quantity" class="done-label">✔ Returned</span>
+              </div>
+            </td>
+          </tr>
+        </ng-container>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- Modal -->
+  <app-confirm-return-modal
+    *ngIf="showModal"
+    [item]="selectedItem"
+    [poId]="selectedPoId"
+    [podeliveryStatus]="modalDeliveryStatus"
+    (confirm)="handleModalConfirm($event)"
+    (close)="handleModalClose()">
+  </app-confirm-return-modal>
+
+  <!-- No data -->
+  <ng-template #noData>
+    <p class="no-orders-msg">No orders found.</p>
+  </ng-template>
+</div>

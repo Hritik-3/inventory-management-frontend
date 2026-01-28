@@ -1,0 +1,106 @@
+<!-- Update Profile Modal -->
+<div class="modal d-block" tabindex="-1" role="dialog" *ngIf="!loading; else loadingTpl" style="background: rgba(0,0,0,0.5);">
+  <div class="modal-dialog modal-dialog-scrollable modal-md" role="document">
+    <div class="modal-content shadow rounded-3">
+ 
+      <!-- Header -->
+      <div class="modal-header bg-primary text-white position-relative">
+        <h5 class="modal-title text-white fw-bold d-flex align-items-center">
+          <i class="bi bi-person-circle me-2"></i> Update Profile
+        </h5>
+        <button type="button" class="btn-close btn-close-white position-absolute top-0 end-0 m-2" aria-label="Close" (click)="cancel()"></button>
+      </div>
+ 
+      <!-- Body -->
+      <div class="modal-body p-3" style="max-height: 70vh; overflow-y: auto;">
+        <form [formGroup]="profileForm" (ngSubmit)="onSubmit()">
+          <div class="row g-2">
+ 
+            <!-- Read-only -->
+            <div class="col-md-6">
+              <label class="form-label">User ID</label>
+              <input type="text" class="form-control form-control-sm" formControlName="userId" readonly />
+            </div>
+ 
+            <div class="col-md-6">
+              <label class="form-label">Role</label>
+              <input type="text" class="form-control form-control-sm" formControlName="role" readonly />
+            </div>
+ 
+            <div class="col-md-6">
+              <label class="form-label">Username</label>
+              <input type="text" class="form-control form-control-sm" formControlName="userName" readonly />
+            </div>
+ 
+            <div class="col-md-6">
+              <label class="form-label">Full Name</label>
+              <input type="text" class="form-control form-control-sm" formControlName="userFullName" readonly />
+            </div>
+ 
+            <div class="col-md-6">
+              <label class="form-label">Email</label>
+              <input type="email" class="form-control form-control-sm" formControlName="userEmail" readonly />
+            </div>
+ 
+            <!-- Editable Mobile -->
+            <div class="col-md-6">
+              <label class="form-label">Mobile <span class="text-danger">*</span></label>
+              <input type="text" class="form-control form-control-sm" formControlName="userMobile" />
+              <div class="text-danger small" *ngIf="profileForm.get('userMobile')?.touched && profileForm.get('userMobile')?.invalid">
+                Enter a valid 10-digit mobile number.
+              </div>
+            </div>
+ 
+            <!-- Hidden/disabled addressId (not shown to user) -->
+            <input type="hidden" formControlName="addressId" />
+ 
+            <!-- Address (editable) -->
+            <div class="col-12 mt-2"><h6 class="fw-bold">Address</h6></div>
+ 
+            <div class="col-md-6">
+              <label class="form-label">Street</label>
+              <input type="text" class="form-control form-control-sm" formControlName="addressStreet" />
+            </div>
+ 
+            <div class="col-md-6">
+              <label class="form-label">City</label>
+              <input type="text" class="form-control form-control-sm" formControlName="addressCity" />
+            </div>
+ 
+            <div class="col-md-6">
+              <label class="form-label">State</label>
+              <input type="text" class="form-control form-control-sm" formControlName="addressState" />
+            </div>
+ 
+            <div class="col-md-6">
+              <label class="form-label">Postal Code</label>
+              <input type="text" class="form-control form-control-sm" formControlName="addressPostalCode" />
+            </div>
+ 
+            <div class="col-md-6">
+              <label class="form-label">Country</label>
+              <input type="text" class="form-control form-control-sm" formControlName="addressCountry" />
+            </div>
+ 
+          </div>
+ 
+          <!-- Actions -->
+          <div class="modal-footer mt-3">
+            <button type="button" class="btn btn-secondary btn-sm" (click)="cancel()">Cancel</button>
+            <button type="submit" class="btn btn-primary btn-sm" [disabled]="profileForm.invalid">Save Changes</button>
+          </div>
+        </form>
+      </div>
+ 
+    </div>
+  </div>
+</div>
+ 
+<ng-template #loadingTpl>
+  <div class="text-center my-5">
+    <div class="spinner-border text-primary" role="status"></div>
+    <p class="mt-3">Loading profile...</p>
+  </div>
+</ng-template>
+ 
+ 

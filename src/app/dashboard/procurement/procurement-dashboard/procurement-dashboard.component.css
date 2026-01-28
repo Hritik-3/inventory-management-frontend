@@ -1,0 +1,74 @@
+.dashboard-container {
+  max-width: 900px;
+  margin: 20px auto;
+  font-family: 'Inter', sans-serif;
+  text-align: center;
+}
+
+h2 {
+  margin-bottom: 20px;
+  font-weight: 600;
+}
+
+/* Overview cards container */
+.overview-cards {
+  display: flex;
+  justify-content: space-around;
+  margin-bottom: 40px;
+  flex-wrap: wrap;
+  gap: 20px; /* spacing between cards */
+}
+
+/* Card styling */
+.card {
+  background: linear-gradient(135deg, #ffffff, #e6f0ff); /* soft gradient */
+  padding: 20px;
+  border-radius: 12px;
+  width: 28%;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+  margin-bottom: 20px;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  cursor: default;
+}
+
+.card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+}
+
+.card h3 {
+  margin-bottom: 10px;
+  font-weight: 500;
+  font-size: 16px;
+  color: #0652a3;
+}
+
+.card-value {
+  font-size: 24px;
+  font-weight: 700;
+  color: #333;
+}
+
+/* Optional color variations for different card types */
+.card.blue {
+  background: linear-gradient(135deg, #e6f0ff, #c3d6ff);
+}
+
+.card.green {
+  background: linear-gradient(135deg, #e6ffe6, #b3f0b3);
+}
+
+.card.orange {
+  background: linear-gradient(135deg, #fff4e6, #ffd9b3);
+}
+
+.card.red {
+  background: linear-gradient(135deg, #ffe6e6, #ffb3b3);
+}
+
+/* Chart container styling */
+.chart-container {
+  width: 100%;
+  max-width: 600px;
+  margin: 0 auto;
+}

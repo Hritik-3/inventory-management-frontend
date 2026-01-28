@@ -1,0 +1,122 @@
+.customer-list-container {
+  width: 100%;
+  max-width: 100%;
+  margin: 0 auto;
+  padding: 10px 15px;
+  box-sizing: border-box;
+  font-family: Arial, sans-serif;
+}
+
+.search-container {
+  margin-bottom: 10px;
+}
+
+.search-container input {
+  width: 100%;
+  padding: 8px;
+  font-size: 14px;
+  box-sizing: border-box;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+}
+
+.table-wrapper {
+  overflow-x: auto;
+}
+
+.customer-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13px;
+}
+
+.customer-table th,
+.customer-table td {
+  border: 1px solid #ddd;
+  padding: 8px;
+  text-align: left;
+  white-space: nowrap;
+}
+
+.customer-table th {
+  background-color: #f2f2f2;
+  color: #333;
+  font-size: 15px;
+  font-weight: bold;
+  padding: 10px;
+}
+
+span.active {
+  color: green;
+  font-weight: bold;
+}
+
+span.inactive {
+  color: rgb(208, 0, 0);
+  font-weight: bold;
+}
+
+.no-results {
+  text-align: center;
+  margin-top: 10px;
+  color: #888;
+}
+
+.pagination-controls {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 15px;
+  flex-wrap: wrap;
+}
+
+.pagination-controls button {
+  padding: 6px 12px;
+  border: 1px solid #007bff;
+  background-color: white;
+  color: #007bff;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.pagination-controls button[disabled] {
+  color: #ccc;
+  border-color: #ccc;
+  cursor: not-allowed;
+}
+
+.text-center {
+  text-align: center;
+  margin-top: 1rem;
+}
+
+.btn-danger {
+  background-color: #259dc1;
+  border-color: #153e57;
+  color: #fff;
+  padding: 8px 16px;
+  font-size: 14px;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-right: 10px;
+}
+
+.btn-danger:hover {
+  background-color: #c82333;
+  border-color: #bd2130;
+}
+
+.btn-primary {
+  background-color: #007bff;
+  border-color: #007bff;
+  color: #fff;
+  padding: 8px 16px;
+  font-size: 14px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.btn-primary:hover {
+  background-color: #0069d9;
+  border-color: #0062cc;
+}

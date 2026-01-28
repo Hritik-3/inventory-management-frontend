@@ -1,0 +1,54 @@
+<div class="dashboard-container">
+  <!-- <h3 class="title">Dashboard</h3> -->
+
+  <div class="grid-layout">
+
+    <!-- Products -->
+    <div class="card">
+      <h3>Products</h3>
+      <div class="list" *ngFor="let p of products">
+        <div class="item">
+          <span class="item-name">{{ p.productsName }}</span>
+          <span class="badge">ID: {{ p.productsId }}</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Raw Materials -->
+    <div class="card">
+      <h3>Raw Materials</h3>
+      <div class="list" *ngFor="let r of rawMaterials">
+        <div class="item">
+          <span class="item-name">{{ r.rwName }}</span>
+          <span class="badge">Qty: {{ r.rwQuantity }}</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Production Lines -->
+    <div class="card">
+      <h3>Production Lines</h3>
+      <div class="list" *ngFor="let l of productionLines">
+        <div class="item">
+          <span class="item-name">{{ l.lineName }}</span>
+          <span class="badge" [class.busy]="l.status !== 'AVAILABLE'">{{ l.status }}</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Product → Raw Material Usage Charts -->
+   <div class="card" *ngFor="let p of products">
+  <h3>{{ p.productsName }} (ID: {{ p.productsId }}) - Raw Material Usage</h3>
+
+  <div class="chart-container">
+    <canvas baseChart
+      [data]="productCharts[p.productsId]"
+      [options]="chartOptions"
+      chartType="pie">
+    </canvas>
+  </div>
+</div>
+
+
+  </div>
+</div>

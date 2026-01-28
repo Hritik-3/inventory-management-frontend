@@ -1,0 +1,27 @@
+<div class="modal-backdrop">
+  <div class="modal-box">
+    <h3>Confirm Return</h3>
+ 
+    <p><strong>Product:</strong> {{ item?.productName }}</p>
+    <p><strong>ProductId:</strong> {{ item?.productId }}</p>
+    <p><strong>Available to Return:</strong> {{ item?.quantity - item?.returnedQuantity }}</p>
+ 
+    <label>Quantity to Return:</label>
+    <input
+      type="number"
+      [(ngModel)]="selectedQuantity"
+      [min]="1"
+      [max]="item?.quantity - item?.returnedQuantity"
+    />
+ 
+    <label>Condition Note:</label>
+    <textarea [(ngModel)]="conditionNote" placeholder="e.g. Damaged, Customer Rejected..."></textarea>
+ 
+    <div class="modal-actions">
+      <button class="confirm-btn" (click)="onConfirm()">Confirm</button>
+      <button class="cancel-btn" (click)="close.emit()">Cancel</button>
+    </div>
+  </div>
+</div>
+ 
+ 
