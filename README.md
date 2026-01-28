@@ -60,22 +60,23 @@ npm install
 ng serve
 
 ---
+
 ## 📸 Screenshots
 
 ### Login Page
-[![Login](./screenshots/login.png)](./screenshots/login.png)
+[![Login](https://raw.githubusercontent.com/Hritik-3/inventory-management-frontend/main/screenshots/login.png)](https://github.com/Hritik-3/inventory-management-frontend/blob/main/screenshots/login.png)
 
 ### Admin Dashboard
-[![Admin Dashboard](./screenshots/admin-dashboard.png)](./screenshots/admin-dashboard.png)
+[![Admin Dashboard](https://raw.githubusercontent.com/Hritik-3/inventory-management-frontend/main/screenshots/admin-dashboard.png)](https://github.com/Hritik-3/inventory-management-frontend/blob/main/screenshots/admin-dashboard.png)
 
 ### Inventory Management
-[![Inventory](./screenshots/inventory.png)](./screenshots/inventory.png)
+[![Inventory](https://raw.githubusercontent.com/Hritik-3/inventory-management-frontend/main/screenshots/inventory.png)](https://github.com/Hritik-3/inventory-management-frontend/blob/main/screenshots/inventory.png)
 
 ### Procurement Orders
-[![Procurement Orders](./screenshots/procurement-orders.png)](./screenshots/procurement-orders.png)
+[![Procurement Orders](https://raw.githubusercontent.com/Hritik-3/inventory-management-frontend/main/screenshots/procurement-orders.png)](https://github.com/Hritik-3/inventory-management-frontend/blob/main/screenshots/procurement-orders.png)
 
 ### Production Dashboard
-[![Production Dashboard](./screenshots/production-dashboard.png)](./screenshots/production-dashboard.png)
+[![Production Dashboard](https://raw.githubusercontent.com/Hritik-3/inventory-management-frontend/main/screenshots/production-dashboard.png)](https://github.com/Hritik-3/inventory-management-frontend/blob/main/screenshots/production-dashboard.png)
 
 
 
