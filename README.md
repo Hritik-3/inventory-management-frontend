@@ -1,24 +1,36 @@
 # Inventory Management System – Frontend
 
-Angular-based frontend for an enterprise-grade Inventory Management System handling Procurement, Inventory, Production, and Administration workflows.
+Angular-based frontend for an enterprise-grade **Inventory Management System** handling Procurement, Inventory, Production, Supplier, and Admin workflows with secure role-based access.
+
+---
 
 ## 🚀 Tech Stack
+
 - Angular
 - TypeScript
 - HTML / CSS
 - REST API Integration
 - JWT Authentication
 
+---
+
 ## 👥 User Roles
-This system provides dedicated dashboards for:
+
+The system provides dedicated dashboards for:
+
 - Admin
 - Procurement Officer
 - Inventory Manager
 - Production Manager
 - Supplier
 
+Each role sees a different dashboard and features based on permissions.
+
+---
+
 ## 🔥 Key Features
-✔ Secure Login & JWT Authentication  
+
+✔ Secure Login with JWT Authentication  
 ✔ Role-Based Access Control (RBAC)  
 ✔ Procurement Order Creation & Tracking  
 ✔ Inventory Stock Management & Alerts  
@@ -26,12 +38,20 @@ This system provides dedicated dashboards for:
 ✔ Supplier Order Management  
 ✔ Reports & Data Visualization  
 
+---
+
 ## 🏗 System Workflow
+
 Procurement → Inventory Validation → Production Scheduling → Supplier Integration → Reporting
 
+---
+
 ## 🔗 Backend Repository
+
 Spring Boot Backend:  
 👉 https://github.com/Hritik-3/inventory-management-system
+
+---
 
 ## ⚙️ How to Run Locally
 
